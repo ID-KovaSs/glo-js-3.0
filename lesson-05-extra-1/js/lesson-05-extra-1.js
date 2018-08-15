@@ -25,21 +25,26 @@ let shopName = document.querySelector('.name'), //Название магази�
 	console.log(shopIsOpen);
 
 /*Получить поля категории товаров через класс*/
-let shopGoodsItem = document.querySelectorAll('.goods-item'); //Введите категории товаров arr[]
+let shopGoodsItem1 = document.querySelectorAll('.goods-item')[0], //Введите категории товаров arr[]
+		shopGoodsItem2 = document.querySelectorAll('.goods-item')[1], //Введите категории товаров arr[]
+		shopGoodsItem3 = document.querySelectorAll('.goods-item')[2], //Введите категории товаров arr[]
+		shopGoodsItem4 = document.querySelectorAll('.goods-item')[3]; //Введите категории товаров arr[]
 
 	console.log('Получить поля категории товаров через класс');
-	console.log(shopGoodsItem[0]);
-	console.log(shopGoodsItem[1]);
-	console.log(shopGoodsItem[2]);
-	console.log(shopGoodsItem[3]);
+	console.log(shopGoodsItem1);
+	console.log(shopGoodsItem2);
+	console.log(shopGoodsItem3);
+	console.log(shopGoodsItem4);
 
 /* Получить все 3 кнопки через Tag*/
-let shopBtn = document.querySelectorAll('.main-functions button');
+let shopBtn1 = document.querySelectorAll('.main-functions button')[0],
+		shopBtn2 = document.querySelectorAll('.main-functions button')[1],
+		shopBtn3 = document.querySelectorAll('.main-functions button')[2];
 
 	console.log('Получить все 3 кнопки через Tag');
-	console.log(shopBtn[0]);
-	console.log(shopBtn[1]);
-	console.log(shopBtn[2]);
+	console.log(shopBtn1);
+	console.log(shopBtn2);
+	console.log(shopBtn3);
 
 /*Получить поля ввода товаров, времени и расчета бюджета через querySelector*/
 let shopChooseItems = document.querySelector('#items'), //Введите продукты через запятую
@@ -52,9 +57,11 @@ let shopChooseItems = document.querySelector('#items'), //Введите про�
 	console.log(shopCountBudget);
 
 /*Получить поля имен сотрудников через querySelectorAll*/
-let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
+let shopHireEmployersItem1 = document.querySelectorAll('.hire-employers-item')[0],
+		shopHireEmployersItem2 = document.querySelectorAll('.hire-employers-item')[1],
+		shopHireEmployersItem3 = document.querySelectorAll('.hire-employers-item')[2];
 
 	console.log('Получить поля имен сотрудников через querySelectorAll');
-	console.log(shopHireEmployersItem[0]);
-	console.log(shopHireEmployersItem[1]);
-	console.log(shopHireEmployersItem[2]);
+	console.log(shopHireEmployersItem1);
+	console.log(shopHireEmployersItem2);
+	console.log(shopHireEmployersItem3);
