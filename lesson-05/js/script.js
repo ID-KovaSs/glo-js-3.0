@@ -12,7 +12,7 @@ newItem.textContent = 'Пятый пункт';
 menu.appendChild(newItem);
 
 // Заменить картинку заднего фона на другую из папки img
-document.body.style.backgroundImage = "url('../img/apple_true.jpg')"
+document.body.style.backgroundImage = "url('../img/apple_true.jpg')";
 
 // Поменять заголовок, добавить слово "подлинную"
 let title = document.querySelector('#title');
@@ -32,9 +32,7 @@ column[1].removeChild(removeAdvertising);
 	 		let regard = document.querySelector('#prompt');
 	 		regard.textContent = message;
 	 } else {
-	 		alert('Вам необходимо ответить, иначе мы не сможем продолжить:(')
+	 		alert('Вам необходимо ответить, иначе мы не сможем продолжить:(');
 	 		i--;
 	 	}
  }
-
-
