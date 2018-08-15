@@ -12,7 +12,7 @@ newItem.textContent = 'Пятый пункт';
 menu.appendChild(newItem);
 
 // Заменить картинку заднего фона на другую из папки img
-document.body.style.backgroundImage = "url('../img/apple_true.jpg')";
+document.body.style.background = "url('../img/apple_true.jpg')";
 
 // Поменять заголовок, добавить слово "подлинную"
 let title = document.querySelector('#title');

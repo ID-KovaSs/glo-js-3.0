@@ -28,18 +28,13 @@ let shopName = document.querySelector('.name'), //Название магази�
 let shopGoodsItem = document.querySelectorAll('.goods-item'); //Введите категории товаров arr[]
 
 	console.log('Получить поля категории товаров через класс');
-	console.log(shopGoodsItem[0]);
-	console.log(shopGoodsItem[1]);
-	console.log(shopGoodsItem[2]);
-	console.log(shopGoodsItem[3]);
+	console.log(shopGoodsItem);
 
 /* Получить все 3 кнопки через Tag*/
 let shopBtn = document.querySelectorAll('.main-functions button');
 
 	console.log('Получить все 3 кнопки через Tag');
-	console.log(shopBtn[0]);
-	console.log(shopBtn[1]);
-	console.log(shopBtn[2]);
+	console.log(shopBtn);
 
 /*Получить поля ввода товаров, времени и расчета бюджета через querySelector*/
 let shopChooseItems = document.querySelector('#items'), //Введите продукты через запятую
@@ -55,6 +50,4 @@ let shopChooseItems = document.querySelector('#items'), //Введите про�
 let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
 	console.log('Получить поля имен сотрудников через querySelectorAll');
-	console.log(shopHireEmployersItem[0]);
-	console.log(shopHireEmployersItem[1]);
-	console.log(shopHireEmployersItem[2]);
+	console.log(shopHireEmployersItem);
