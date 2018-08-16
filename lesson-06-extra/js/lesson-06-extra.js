@@ -103,15 +103,51 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 		console.log(`Сумма бюджета на день: ${summ.toFixed(2)} рублей`);
 	});
 
-	// Событие для поля найма сотрудников
+/*Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
+	· Ничего кроме букв ввести нельзя.
+	· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново*/
+let	value = shopEmployersBtn.value;
+
+shopEmployersBtn.addEventListener('input', (e) => {
+  var newValue = e.target.value;
+  if( newValue.match(/[а-яА-Я]/g)) {
+     shopEmployersBtn.value = value;
+     return;
+  }
+  value = newValue;
+});
+
+
+/*// Событие для поля найма сотрудников
 	shopEmployersBtn.addEventListener('click', () => {
+		
 		for (let i = 0; i < shopHireEmployersItem.length; i++) {
-				let nameEmpl = shopHireEmployersItem[i].value;
+			let nameEmpl = shopHireEmployersItem[i].value;
+		Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
+			· Ничего кроме букв ввести нельзя.
+			· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново
+			if (nameEmpl.match(/[а-яА-Я]/g)) {
 				mainList.employers[i] = nameEmpl;
 				console.log(mainList.employers[i]);
 				shopEmployers.textContent +=`${mainList.employers[i]}, `;
+			} else {
+				alert(`Введите имя сотрудника № ${i+1}, имя сотрудника может состоять  из русских символов без использования цифр!`);
+				break;
+			}
 		}
-	});
+	})*/
+
+/*	// Событие для поля найма сотрудников
+	shopEmployersBtn.addEventListener('click', () => {
+		for (let i = 0; i < shopHireEmployersItem.length; i++) {
+				
+
+		let nameEmpl = shopHireEmployersItem[i].value;
+		mainList.employers[i] = nameEmpl;
+		console.log(mainList.employers[i]);
+		shopEmployers.textContent +=`${mainList.employers[i]}, `;
+		}
+	});*/
 
 /*	Событие для поля дисконтной системы, реализовано по клику*/
 	shopDiscount.addEventListener('click', () => {
