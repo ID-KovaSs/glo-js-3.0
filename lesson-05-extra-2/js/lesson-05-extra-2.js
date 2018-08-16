@@ -37,7 +37,7 @@ title1.appendChild(addTime);
 
 function rusDay(date) {
 	let rusDay =  date.toLocaleString("ru", options);
-	return `${rusDay}`
+	return `${rusDay}`;
 }
 // Объявление переменных
 let title2 = document.querySelector("#title2"),
@@ -45,21 +45,39 @@ let title2 = document.querySelector("#title2"),
 		options = {weekday: 'long'}; // Опции отображения
 // Вывод на экран
 addDay.textContent = rusDay(nowTime);
+addDay.style.textTransform = 'capitalize'; // Вывод слова с большой буквы
 title2.appendChild(addDay);
 
 
 /*Напишите функцию, которая выводит на страницу разницу между двумя датами в количестве дней
 	· На странице создайте интерфейс для её отображения: как минимум - 3 input’a: для ввода дат и вывода результата.*/
 
-let startDate = document.querySelectorAll('#startNum'),
-		endDate = document.querySelectorAll('#endNum'),
-		resultDate = document.querySelectorAll('#result'),
-		sd = new Date(startDate);
+let dayDiff = function () {
+	let startDate = document.querySelector('#startNum'),
+			endDate = document.querySelector('#endNum'),
+			resBtn =  document.querySelector('#resBtn'),
+			resultDate = document.querySelector('#result');
+	
+	// Событие для кнопки "Рассчитать"
+	resBtn.addEventListener('click', () => {
+	// Работа с первой датой
+	let s = startDate.value,
+			startValue = s.split('-'),
+			date1 = new Date(startValue);
+	// Работа со второй датой	
+	let en = endDate.value,
+			endValue = en.split('-'),
+			date2 = new Date(endValue);
+	// Вычисление разницы колличества дней
+	let utc1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()),
+			utc2 = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()),
+			msPerDay = 1000 * 60 * 60 * 24;
+			resultValue  = Math.floor((utc2 - utc1) / msPerDay),
+	// Вывод информации в консоль
+	console.log(`Разница составляет ${resultValue} дней`);
+	// Вывод информации на страницу
+	resultDate.value = `Разница ${resultValue} дней`;
+	});
+};
 
-console.log(sd);
- 
-
-function pastDay(startDate, endDate) {
-	date.setDate(startDate.getDate() - endDate.getDate());
-  return date.getDate();
-}
+dayDiff();
