@@ -28,7 +28,10 @@ let shopChooseItems = document.querySelector('#items'), //Введите про�
 /*Получить поля имен сотрудников через querySelectorAll*/
 let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
-
+	openBtn[0].setAttribute("disabled", "true");
+	openBtn[1].setAttribute("disabled", "true");
+	openBtn[2].setAttribute("disabled", "true");
+	shopCountBudget.setAttribute("disabled", "true");
 
 	// Событие для кнопки открытия магазина
 	shopOpen.addEventListener('click', () => {
@@ -91,7 +94,15 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 		// Проверка на mainList.open = true;
 		if (mainList.open == true) {
 			shopIsOpen.style.backgroundColor = 'green';
+			// Удаление кнопкам атрибута disabled
+			openBtn[0].removeAttribute("disabled", "true");
+			openBtn[1].removeAttribute("disabled", "true");
+			openBtn[2].removeAttribute("disabled", "true");
 		} else {
+			// Добавление кнопкам атрибута disabled
+			openBtn[0].setAttribute("disabled", "true");
+			openBtn[1].setAttribute("disabled", "true");
+			openBtn[2].setAttribute("disabled", "true");
 			shopIsOpen.style.backgroundColor = 'red';
 		}
 	});
@@ -108,9 +119,9 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 	· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново*/
 let	value = shopEmployersBtn.value;
 
-shopEmployersBtn.addEventListener('input', (e) => {
+shopEmployersBtn[0].addEventListener('input', (e) => {
   var newValue = e.target.value;
-  if( newValue.match(/[а-яА-Я]/g)) {
+  if( newValue.match(/^[а-яА-Я]/g)) {
      shopEmployersBtn.value = value;
      return;
   }

@@ -29,11 +29,19 @@ let shopChooseItems = document.querySelector('#items'), //Введите про�
 /*Получить поля имен сотрудников через querySelectorAll*/
 let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
-
+	// Блокировка полей ввода
 	openBtn[0].setAttribute("disabled", "true");
 	openBtn[1].setAttribute("disabled", "true");
 	openBtn[2].setAttribute("disabled", "true");
+	shopGoodsItem[0].setAttribute("disabled", "true");
+	shopGoodsItem[1].setAttribute("disabled", "true");
+	shopGoodsItem[2].setAttribute("disabled", "true");
+	shopGoodsItem[3].setAttribute("disabled", "true");
 	shopCountBudget.setAttribute("disabled", "true");
+	shopChooseItems.setAttribute("disabled", "true");
+	shopHireEmployersItem[0].setAttribute("disabled", "true");
+	shopHireEmployersItem[1].setAttribute("disabled", "true");
+	shopHireEmployersItem[2].setAttribute("disabled", "true");
 
 	// Событие для кнопки открытия магазина
 	shopOpen.addEventListener('click', () => {
@@ -101,11 +109,27 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 			openBtn[0].removeAttribute("disabled", "true");
 			openBtn[1].removeAttribute("disabled", "true");
 			openBtn[2].removeAttribute("disabled", "true");
+			shopGoodsItem[0].removeAttribute("disabled", "true");
+			shopGoodsItem[1].removeAttribute("disabled", "true");
+			shopGoodsItem[2].removeAttribute("disabled", "true");
+			shopGoodsItem[3].removeAttribute("disabled", "true");
+			shopChooseItems.removeAttribute("disabled", "true");	
+			shopHireEmployersItem[0].removeAttribute("disabled", "true");
+			shopHireEmployersItem[1].removeAttribute("disabled", "true");
+			shopHireEmployersItem[2].removeAttribute("disabled", "true");
 		} else {
 			// Добавление кнопкам атрибута disabled
 			openBtn[0].setAttribute("disabled", "true");
 			openBtn[1].setAttribute("disabled", "true");
 			openBtn[2].setAttribute("disabled", "true");
+			shopGoodsItem[0].setAttribute("disabled", "true");
+			shopGoodsItem[1].setAttribute("disabled", "true");
+			shopGoodsItem[2].setAttribute("disabled", "true");
+			shopGoodsItem[3].setAttribute("disabled", "true");
+			shopChooseItems.setAttribute("disabled", "true");
+			shopHireEmployersItem[0].setAttribute("disabled", "true");
+			shopHireEmployersItem[1].setAttribute("disabled", "true");
+			shopHireEmployersItem[2].setAttribute("disabled", "true");
 			shopIsOpen.style.backgroundColor = 'red';
 		}
 	});
