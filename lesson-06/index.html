@@ -34,12 +34,12 @@
 			<div class="isopen">Открыто </div>
 			<div class="isopen-value"></div>
 		</div>
-		<div class="main-functions">
+		<div class="main-functions" id="mainFunctions">
 			<div class="choose-goods">Введите категории товаров</div>
-			<input class="goods-item" type="text" id="goods_1">
-			<input class="goods-item" type="text" id="goods_2">
-			<input class="goods-item" type="text" id="goods_3">
-			<input class="goods-item" type="text" id="goods_4">
+			<input class="goods-item" type="text" id="goods_1" data-action="blockOpenBtn">
+			<input class="goods-item" type="text" id="goods_2" data-action="blockOpenBtn">
+			<input class="goods-item" type="text" id="goods_3" data-action="blockOpenBtn">
+			<input class="goods-item" type="text" id="goods_4" data-action="blockOpenBtn">
 			<button class="goods-item-btn">Утвердить</button>
 
 			<div class="choose-items">Введите продукты через запятую</div>
@@ -53,9 +53,9 @@
 			<button class="count-budget-btn">Рассчитать</button>
 
 			<div class="hire-employers">Имена сотрудников</div>
-			<input class="hire-employers-item" type="text" id="employers_1" placeholder="русскими буквами без цифр">
-			<input class="hire-employers-item" type="text" id="employers_2" placeholder="русскими буквами без цифр">
-			<input class="hire-employers-item" type="text" id="employers_3" placeholder="русскими буквами без цифр">
+			<input class="hire-employers-item" type="text" id="employers_1" placeholder="русскими буквами без цифр" data-action="testInput">
+			<input class="hire-employers-item" type="text" id="employers_2" placeholder="русскими буквами без цифр" data-action="testInput">
+			<input class="hire-employers-item" type="text" id="employers_3" placeholder="русскими буквами без цифр" data-action="testInput">
 			<button class="hire-employers-btn">Нанять</button>
 		</div>
 	</div>

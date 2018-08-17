@@ -45,17 +45,15 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
 	// Событие для кнопки открытия магазина
 	shopOpen.addEventListener('click', () => {
-		mainList.budget = +prompt('Ваш бюджет на месяц?'); 
-					
-					while (isNaN(mainList.budget) || mainList.budget =='' || mainList.budget == null) {
-						mainList.budget = +prompt('Ваш бюджет на месяц?', 10000); // Замучался вводить значения - поставил дефолтные
-						console.log(`Бюджет на месяц составляет ${mainList.budget} рублей`);
-						shopBudget.textContent = mainList.budget;
-					}
+		while (isNaN(mainList.budget) || mainList.budget =='' || mainList.budget == null) {
+		mainList.budget = +prompt('Ваш бюджет на месяц?', 10000); // Замучался вводить значения - поставил дефолтные
+		console.log(`Бюджет на месяц составляет ${mainList.budget} рублей`);
+		shopBudget.textContent = mainList.budget;
+	}
 
-					mainList.shopName = prompt('Название вашего магазина?', 'Зара').toUpperCase(); // Замучался вводить значения - поставил дефолтные
-					console.log(`Наш магазин называется ${mainList.shopName}`);
-					shopName.textContent = mainList.shopName;
+	mainList.shopName = prompt('Название вашего магазина?', 'Зара').toUpperCase(); // Замучался вводить значения - поставил дефолтные
+	console.log(`Наш магазин называется ${mainList.shopName}`);
+	shopName.textContent = mainList.shopName;
 	});
 
 	// Событие для поля ввода продуктов в магазин
@@ -87,7 +85,8 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 	// Событие для поля проверки работы магазина
 	shopTimeValue.addEventListener('change', () => {
 		let time = shopTimeValue.value;
-		// Проверка на условие
+				
+	// Проверка на условие
 		if (time < 0) {
 			console.log('Такого просто не может быть');
 			mainList.open = false;
@@ -102,12 +101,12 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 					console.log('В сутках только 24 часа:)');
 				}
 		// Проверка на mainList.open = true;
-if (mainList.open == true) {
+		if (mainList.open == true) {
 			shopIsOpen.style.backgroundColor = 'green';
-			// Удаление кнопкам атрибута disabled
-			openBtn[0].removeAttribute("disabled", "true");
+			/*Удаление кнопкам атрибута disabled*/
+			// openBtn[0].removeAttribute("disabled", "true");
 			openBtn[1].removeAttribute("disabled", "true");
-			openBtn[2].removeAttribute("disabled", "true");
+			// openBtn[2].removeAttribute("disabled", "true");
 			shopGoodsItem[0].removeAttribute("disabled", "true");
 			shopGoodsItem[1].removeAttribute("disabled", "true");
 			shopGoodsItem[2].removeAttribute("disabled", "true");
@@ -143,17 +142,12 @@ if (mainList.open == true) {
 /*Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
 	· Ничего кроме букв ввести нельзя.
 	· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново*/
-	let	value = shopHireEmployersItem[0].value;
-	let	value1 = shopHireEmployersItem[1].value;
-	let	value2 = shopHireEmployersItem[2].value;
+	let	value = shopHireEmployersItem[0].value,
+			value1 = shopHireEmployersItem[1].value,
+			value2 = shopHireEmployersItem[2].value;
+
 
 	shopHireEmployersItem[0].addEventListener('input', (e) => {
-		// Разблокировка кнопки shopEmployersBtn
-		if (shopHireEmployersItem[0].value != '') {
-			openBtn[2].removeAttribute("disabled", "true");
-		} else {
-			openBtn[2].setAttribute("disabled", "true");
-		}
 		// Проверка на правильность ввода значений
 		let newValue = e.target.value;
 	  if( newValue.match(/[^а-яА-Я]/g)) {
@@ -165,12 +159,6 @@ if (mainList.open == true) {
 	});
 
 	shopHireEmployersItem[1].addEventListener('input', (e) => {
-		// Разблокировка кнопки shopEmployersBtn
-		if (shopHireEmployersItem[1].value != '') {
-			openBtn[2].removeAttribute("disabled", "true");
-		} else {
-			openBtn[2].setAttribute("disabled", "true");
-		}
 		// Проверка на правильность ввода значений
 		let newValue = e.target.value;
 	  if( newValue.match(/[^а-яА-Я]/g)) {
@@ -182,12 +170,6 @@ if (mainList.open == true) {
 	});
 
 	shopHireEmployersItem[2].addEventListener('input', (e) => {
-		// Разблокировка кнопки shopEmployersBtn
-		if (shopHireEmployersItem[2].value != '') {
-			openBtn[2].removeAttribute("disabled", "true");
-		} else {
-			openBtn[2].setAttribute("disabled", "true");
-		}
 		// Проверка на правильность ввода значений
 		let newValue = e.target.value;
 	  if( newValue.match(/[^а-яА-Я]/g)) {
@@ -200,10 +182,14 @@ if (mainList.open == true) {
 
 	// Событие для поля найма сотрудников
 	shopEmployersBtn.addEventListener('click', () => {
+		// При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново
+		shopEmployers.textContent = '';
+		
 		for (let i = 0; i < shopHireEmployersItem.length; i++) {
 				let nameEmpl = shopHireEmployersItem[i].value;
 				mainList.employers[i] = nameEmpl;
-				console.log(mainList.employers[i]);
+				// console.log(mainList.employers[i]);
+				console.log(mainList.employers);
 				shopEmployers.textContent +=`${mainList.employers[i]}, `;
 		}
 	});
@@ -234,4 +220,38 @@ if (mainList.open == true) {
 		open: false,
 		shopItems: []
 	};
+
+	// Обработчик событий input 
+	function MainFunc(elem) {
+	 // Разблокировка кнопки openBtn для ввода карегорий товаров
+	 this.blockOpenBtn = function() {
+    	if (shopGoodsItem[0].value != '' || shopGoodsItem[1].value != '' || shopGoodsItem[2].value != '' || shopGoodsItem[3].value != '') {
+				openBtn[0].removeAttribute("disabled", "true");
+			} else {
+				openBtn[0].setAttribute("disabled", "true");
+			}
+  	};
+
+	this.testInput = function() {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[0].value != '' || shopHireEmployersItem[1].value != '' || shopHireEmployersItem[2].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+  };
+
+    let self = this;
+
+	  elem.oninput = function(e) {
+	    let target = e.target,
+	    		action = target.getAttribute('data-action');
+	    if (action) {
+	      self[action]();
+	    }
+	  };
+  }
+
+new MainFunc(mainFunctions);
+
 
