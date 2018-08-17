@@ -71,6 +71,42 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 		}
 	});
 
+	// Разблокировка кнопки shopGoodsItem[0] ввода карегорий товаров
+	shopGoodsItem[0].addEventListener('input', () => {
+		if (shopGoodsItem[0].value != '') {
+			openBtn[0].removeAttribute("disabled", "true");
+		} else {
+			openBtn[0].setAttribute("disabled", "true");
+		}
+	});
+
+	// Разблокировка кнопки shopGoodsItem[1] ввода карегорий товаров
+	shopGoodsItem[1].addEventListener('input', () => {
+		if (shopGoodsItem[1].value != '') {
+			openBtn[0].removeAttribute("disabled", "true");
+		} else {
+			openBtn[0].setAttribute("disabled", "true");
+		}
+	});
+
+	// Разблокировка кнопки shopGoodsItem[2] ввода карегорий товаров
+	shopGoodsItem[2].addEventListener('input', () => {
+		if (shopGoodsItem[2].value != '') {
+			openBtn[0].removeAttribute("disabled", "true");
+		} else {
+			openBtn[0].setAttribute("disabled", "true");
+		}
+	});
+
+	// Разблокировка кнопки shopGoodsItem[3] ввода карегорий товаров
+	shopGoodsItem[3].addEventListener('input', () => {
+		if (shopGoodsItem[3].value != '') {
+			openBtn[0].removeAttribute("disabled", "true");
+		} else {
+			openBtn[0].setAttribute("disabled", "true");
+		}
+	});
+
 	// Событие для поля ввода наименования товаров
 	shopChooseItems.addEventListener('change', () => {
 			let items = shopChooseItems.value;
@@ -106,9 +142,9 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 		if (mainList.open == true) {
 			shopIsOpen.style.backgroundColor = 'green';
 			// Удаление кнопкам атрибута disabled
-			openBtn[0].removeAttribute("disabled", "true");
+			// openBtn[0].removeAttribute("disabled", "true");
 			openBtn[1].removeAttribute("disabled", "true");
-			openBtn[2].removeAttribute("disabled", "true");
+			// openBtn[2].removeAttribute("disabled", "true");
 			shopGoodsItem[0].removeAttribute("disabled", "true");
 			shopGoodsItem[1].removeAttribute("disabled", "true");
 			shopGoodsItem[2].removeAttribute("disabled", "true");
@@ -139,6 +175,65 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 		let summ = mainList.budget / 30;
 		shopCountBudget.value = summ.toFixed(2); // Округление до копеек
 		console.log(`Сумма бюджета на день: ${summ.toFixed(2)} рублей`);
+	});
+
+/*Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
+	· Ничего кроме букв ввести нельзя.
+	· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново*/
+	let	value = shopHireEmployersItem[0].value;
+	let	value1 = shopHireEmployersItem[1].value;
+	let	value2 = shopHireEmployersItem[2].value;
+
+
+	shopHireEmployersItem[0].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[0].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[0].value = value;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value = newValue;
+	});
+
+	shopHireEmployersItem[1].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[1].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[1].value = value1;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value1 = newValue;
+	});
+
+	shopHireEmployersItem[2].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[2].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[2].value = value2;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value2 = newValue;
 	});
 
 	// Событие для поля найма сотрудников

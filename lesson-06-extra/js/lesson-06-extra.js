@@ -16,7 +16,8 @@ let shopName = document.querySelector('.name-value'), //Название маг�
 let shopGoodsItem = document.querySelectorAll('.goods-item'); //Введите категории товаров arr[]
 
 /* Получить все 3 кнопки через Tag*/
-let shopItemBtn = document.querySelectorAll('.main-functions button')[0],
+let openBtn = document.querySelectorAll('.main-functions button'),
+		shopItemBtn = document.querySelectorAll('.main-functions button')[0],
 		shopBudgetBtn = document.querySelectorAll('.main-functions button')[1],
 		shopEmployersBtn = document.querySelectorAll('.main-functions button')[2];
 
@@ -28,10 +29,19 @@ let shopChooseItems = document.querySelector('#items'), //Введите про�
 /*Получить поля имен сотрудников через querySelectorAll*/
 let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
+	// Блокировка полей ввода
 	openBtn[0].setAttribute("disabled", "true");
 	openBtn[1].setAttribute("disabled", "true");
 	openBtn[2].setAttribute("disabled", "true");
+	shopGoodsItem[0].setAttribute("disabled", "true");
+	shopGoodsItem[1].setAttribute("disabled", "true");
+	shopGoodsItem[2].setAttribute("disabled", "true");
+	shopGoodsItem[3].setAttribute("disabled", "true");
 	shopCountBudget.setAttribute("disabled", "true");
+	shopChooseItems.setAttribute("disabled", "true");
+	shopHireEmployersItem[0].setAttribute("disabled", "true");
+	shopHireEmployersItem[1].setAttribute("disabled", "true");
+	shopHireEmployersItem[2].setAttribute("disabled", "true");
 
 	// Событие для кнопки открытия магазина
 	shopOpen.addEventListener('click', () => {
@@ -92,17 +102,33 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 					console.log('В сутках только 24 часа:)');
 				}
 		// Проверка на mainList.open = true;
-		if (mainList.open == true) {
+if (mainList.open == true) {
 			shopIsOpen.style.backgroundColor = 'green';
 			// Удаление кнопкам атрибута disabled
 			openBtn[0].removeAttribute("disabled", "true");
 			openBtn[1].removeAttribute("disabled", "true");
 			openBtn[2].removeAttribute("disabled", "true");
+			shopGoodsItem[0].removeAttribute("disabled", "true");
+			shopGoodsItem[1].removeAttribute("disabled", "true");
+			shopGoodsItem[2].removeAttribute("disabled", "true");
+			shopGoodsItem[3].removeAttribute("disabled", "true");
+			shopChooseItems.removeAttribute("disabled", "true");	
+			shopHireEmployersItem[0].removeAttribute("disabled", "true");
+			shopHireEmployersItem[1].removeAttribute("disabled", "true");
+			shopHireEmployersItem[2].removeAttribute("disabled", "true");
 		} else {
 			// Добавление кнопкам атрибута disabled
 			openBtn[0].setAttribute("disabled", "true");
 			openBtn[1].setAttribute("disabled", "true");
 			openBtn[2].setAttribute("disabled", "true");
+			shopGoodsItem[0].setAttribute("disabled", "true");
+			shopGoodsItem[1].setAttribute("disabled", "true");
+			shopGoodsItem[2].setAttribute("disabled", "true");
+			shopGoodsItem[3].setAttribute("disabled", "true");
+			shopChooseItems.setAttribute("disabled", "true");
+			shopHireEmployersItem[0].setAttribute("disabled", "true");
+			shopHireEmployersItem[1].setAttribute("disabled", "true");
+			shopHireEmployersItem[2].setAttribute("disabled", "true");
 			shopIsOpen.style.backgroundColor = 'red';
 		}
 	});
@@ -117,48 +143,70 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 /*Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
 	· Ничего кроме букв ввести нельзя.
 	· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново*/
-let	value = shopEmployersBtn.value;
+	let	value = shopHireEmployersItem[0].value;
+	let	value1 = shopHireEmployersItem[1].value;
+	let	value2 = shopHireEmployersItem[2].value;
 
-shopEmployersBtn[0].addEventListener('input', (e) => {
-  var newValue = e.target.value;
-  if( newValue.match(/^[а-яА-Я]/g)) {
-     shopEmployersBtn.value = value;
-     return;
-  }
-  value = newValue;
-});
+	shopHireEmployersItem[0].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[0].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[0].value = value;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value = newValue;
+	});
 
+	shopHireEmployersItem[1].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[1].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[1].value = value1;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value1 = newValue;
+	});
 
-/*// Событие для поля найма сотрудников
+	shopHireEmployersItem[2].addEventListener('input', (e) => {
+		// Разблокировка кнопки shopEmployersBtn
+		if (shopHireEmployersItem[2].value != '') {
+			openBtn[2].removeAttribute("disabled", "true");
+		} else {
+			openBtn[2].setAttribute("disabled", "true");
+		}
+		// Проверка на правильность ввода значений
+		let newValue = e.target.value;
+	  if( newValue.match(/[^а-яА-Я]/g)) {
+	     shopHireEmployersItem[2].value = value2;
+	  		openBtn[2].setAttribute("disabled", "true");
+	     return;
+	  }
+	  value2 = newValue;
+	});
+
+	// Событие для поля найма сотрудников
 	shopEmployersBtn.addEventListener('click', () => {
-		
 		for (let i = 0; i < shopHireEmployersItem.length; i++) {
-			let nameEmpl = shopHireEmployersItem[i].value;
-		Сделать так, чтобы в поля “Имена сотрудников” можно было писать только русские буквы
-			· Ничего кроме букв ввести нельзя.
-			· При повторном нажатии на кнопку “Нанять” - сотрудники перезаписываются заново
-			if (nameEmpl.match(/[а-яА-Я]/g)) {
+				let nameEmpl = shopHireEmployersItem[i].value;
 				mainList.employers[i] = nameEmpl;
 				console.log(mainList.employers[i]);
 				shopEmployers.textContent +=`${mainList.employers[i]}, `;
-			} else {
-				alert(`Введите имя сотрудника № ${i+1}, имя сотрудника может состоять  из русских символов без использования цифр!`);
-				break;
-			}
 		}
-	})*/
-
-/*	// Событие для поля найма сотрудников
-	shopEmployersBtn.addEventListener('click', () => {
-		for (let i = 0; i < shopHireEmployersItem.length; i++) {
-				
-
-		let nameEmpl = shopHireEmployersItem[i].value;
-		mainList.employers[i] = nameEmpl;
-		console.log(mainList.employers[i]);
-		shopEmployers.textContent +=`${mainList.employers[i]}, `;
-		}
-	});*/
+	});
 
 /*	Событие для поля дисконтной системы, реализовано по клику*/
 	shopDiscount.addEventListener('click', () => {
@@ -182,7 +230,7 @@ shopEmployersBtn[0].addEventListener('input', (e) => {
 		shopName: '',
 		shopGoods: [],
 		employers: {},
-		discount: false,
+		discount: true,
 		open: false,
 		shopItems: []
 	};
