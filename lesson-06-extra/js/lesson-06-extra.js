@@ -223,7 +223,7 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
 	// Обработчик событий input 
 	function MainFunc(elem) {
-	 // Разблокировка кнопки openBtn для ввода карегорий товаров
+	 // Разблокировка кнопки openBtn для ввода категорий товаров
 	 this.blockOpenBtn = function() {
     	if (shopGoodsItem[0].value != '' || shopGoodsItem[1].value != '' || shopGoodsItem[2].value != '' || shopGoodsItem[3].value != '') {
 				openBtn[0].removeAttribute("disabled", "true");
