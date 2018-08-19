@@ -1,19 +1,26 @@
-jshint esversion: 6 */
+/*jshint esversion: 6 */
 function getFriendlyNumbers(start, end) {
-		if (start > 0 && end > 0 && start != end ) {
+		if (typeof(start) == "string" && typeof(end) == "string") {
+			return false;
+		}
+
+		if (start > end) {
+			return false;
+		}
+		if (start > 0 && end > 0 ) {
 			if (checkNum(start, end)) {
 				let arrNumber = arrNum(start, end);
 				return getFrendlyNum(arrNumber);
 			}
 		} else {
-			return [];
+			return false;
 		}
 // return[]
 }
 
 /*Функция проверки интервала на соответствие условиям*/
 function checkNum(num1, num2){
-	if (num1 != num2 && num1 < num2 ) {
+	if (num1 != num2 ) {
 		return true;
 	} else {
 		return [];
@@ -34,19 +41,24 @@ function arrNum(num1, num2) {
 function getFrendlyNum(arr) {
 	let arrFriend = [],
 			friendNunRes;
-	for (var i = 0; i <= arr.length; i++) {
-			// console.log(`${i}: ${getDivisorsSum(i)}`);
-			for (let j = 0; j <arr.length; j++) {
+	for (var i = 0; i < arr.length; i++) {
+			// console.log(`№${i} ${arr[i]}: ${getDivisorsSum(arr[i])}`);
+			for (let j = i; j <= arr.length; j++) {
 				let numberCheck1 = getDivisorsSum(i),
 						numberCheck2 = getDivisorsSum(j);
-				if (numberCheck1 == j && numberCheck2 == i && numberCheck1 != numberCheck2 && numberCheck1 < numberCheck2){
-					arrFriend.push([j,i]);
+					// console.log(`№${j} ${arr[j]}: ${getDivisorsSum(arr[j])}`);
+				if (numberCheck1 == j && numberCheck2 == i && numberCheck1 != numberCheck2 /*&& numberCheck1 < numberCheck2*/){
+					arrFriend.push([i,j]);
 					// console.log(arrFriend);
 					friendNunRes = arrFriend;
 				}
 			}
 		}
-		
+
+		if (arrFriend.length === 0) {
+			return [];
+		}
+
 		if (arrFriend.length != 0 ) {
 			return friendNunRes;
 		} else {
