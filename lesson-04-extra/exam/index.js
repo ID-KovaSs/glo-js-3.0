@@ -1,20 +1,22 @@
 /*jshint esversion: 6 */
 function getFriendlyNumbers(start, end) {
-		if (typeof(start) == "string" && typeof(end) == "string") {
-			return false;
+	// Проверка на ввод строковых значений
+	if (typeof(start) == "string" && typeof(end) == "string") {
+		return false;
+	}
+	// Проверка на ввод начала диапазона превышающего его конец
+	if (start > end) {
+		return false;
+	}
+	// Проверка положительны ли числа диапазона
+	if (start > 0 && end > 0 ) {
+		if (checkNum(start, end)) {
+			let arrNumber = arrNum(start, end);
+			return getFrendlyNum(arrNumber);
 		}
-
-		if (start > end) {
-			return false;
-		}
-		if (start > 0 && end > 0 ) {
-			if (checkNum(start, end)) {
-				let arrNumber = arrNum(start, end);
-				return getFrendlyNum(arrNumber);
-			}
-		} else {
-			return false;
-		}
+	} else {
+		return false;
+	}
 // return[]
 }
 
