@@ -8,11 +8,11 @@
   </head>
   <body>
 
-	<div class="open">
+	<div class="open wow rubberBand" data-wow-duration="1s">
 		<button class="open-btn" id="open-btn">Открыть магазин</button>
 	</div>
 	<div class="main">
-		<div class="main-info">
+		<div class="main-info wow hidden" data-wow-duration="1s">
 			<div class="name">Название магазина: </div>
 			<div class="name-value"></div>
 
@@ -29,12 +29,12 @@
 			<div class="employers-value"></div>
 
 			<div class="discount">Дисконтная система </div>
-			<div class="discount-value"></div>
+			<div class="discount-value wow" data-wow-delay="6s"></div>
 
 			<div class="isopen">Открыто </div>
 			<div class="isopen-value"></div>
 		</div>
-		<div class="main-functions" id="mainFunctions">
+		<div class="main-functions wow hidden" id="mainFunctions" data-wow-duration="1s">
 			<div class="choose-goods">Введите категории товаров</div>
 			<input class="goods-item" type="text" id="goods_1" data-action="blockOpenBtn">
 			<input class="goods-item" type="text" id="goods_2" data-action="blockOpenBtn">
@@ -46,7 +46,7 @@
 			<input class="choose-item" type="text" id="items">
 
 			<div class="time">Сколько сейчас времени?</div>
-			<input class="time-value" type="text" id="time">
+			<input class="time-value wow shake" type="text" id="time" data-wow-delay="3s">
 
 			<div class="count-budget">Расчет дневного бюджета</div>
 			<input class="count-budget-value" type="text" id="budget">
@@ -61,9 +61,11 @@
 	</div>
 
 
+	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script  src="js/lesson-06.js">	</script>
-	<script  src="js/">	</script>
+	<script  src="js/lesson-06-styleShop.js">	</script>
+	<script  src="js/wow.min.js">	</script>
+	<script> new WOW().init(); </script>
   </body>
 </html>
