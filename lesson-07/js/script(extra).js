@@ -4,7 +4,7 @@ let showAnim = document.querySelector("#showAnim");
 
   showAnim.addEventListener('click', function() {
   	animate(function(timePassed) {
-        showAnim.style.left = timePassed / 5 + 'px';
+        showAnim.style.top = timePassed / 5 + 'px';
       }, 2000);
 	});
 
