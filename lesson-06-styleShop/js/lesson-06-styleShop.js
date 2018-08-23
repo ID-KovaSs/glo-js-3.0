@@ -72,7 +72,7 @@ let shopHireEmployersItem = document.querySelectorAll('.hire-employers-item');
 	
 	function shopCloseBtn() {
 		shopOpen.textContent = 'Открыть магазин';
-		shopOpen.style.backgroundColor = '#5356ad';
+		shopOpen.style.backgroundColor = '#1E90FF';
 		mainInfo.classList.remove('fadeInLeft');
 		mainFunctions.classList.remove('fadeInRight');
 		mainInfo.classList.add('fadeOutLeft');

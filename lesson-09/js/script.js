@@ -115,7 +115,14 @@ window.addEventListener('DOMContentLoaded', function() {
 	// Modal
 	let more = document.querySelector('.more'),
 			overlay = document.querySelector('.overlay'),
-			close = document.querySelector('.popup-close');
+			close = document.querySelector('.popup-close'),
+			infoHeader = document.querySelector('.info-header'),
+			descriptionBtn = document.querySelector('.description-btn');
+
+	infoHeader.addEventListener('click', function() {
+		overlay.style.display = "block";
+		document.body.style.overflow = "hidden";
+	});
 
 	more.addEventListener('click', function() {
 		this.classList.add('more-splash');
