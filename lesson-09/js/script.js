@@ -116,13 +116,17 @@ window.addEventListener('DOMContentLoaded', function() {
 	let more = document.querySelector('.more'),
 			overlay = document.querySelector('.overlay'),
 			close = document.querySelector('.popup-close'),
-			infoHeader = document.querySelector('.info-header'),
-			descriptionBtn = document.querySelector('.description-btn');
+			description = document.querySelector('.description'),
+			descriptionBtn = document.querySelectorAll('.description-btn');
 
-	infoHeader.addEventListener('click', function() {
-		overlay.style.display = "block";
-		document.body.style.overflow = "hidden";
-	});
+	// Событие всплытия модального окна на табах
+	for (var i = 0; i < descriptionBtn.length; i++) {
+		descriptionBtn[i].addEventListener('click', function() {
+			overlay.style.display = "block";
+			document.body.style.overflow = "hidden";
+		});
+	}
+
 
 	more.addEventListener('click', function() {
 		this.classList.add('more-splash');
