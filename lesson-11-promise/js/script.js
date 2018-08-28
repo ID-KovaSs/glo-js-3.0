@@ -113,44 +113,36 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 
 	//PhoneMask
-	function setCursorPosition(pos, elem) {
-		elem.focus();
-		if (elem.setSelectionRange) elem.setSelectionRange(pos, pos);
-		else if (elem.createTextRange) {
-		let range = elem.createTextRange();
-		range.collapse(true);
-		range.moveEnd("character", pos);
-		range.moveStart("character", pos);
-		range.select();
-		}
-	}
-	function mask(event) {
- 		let matrix = "+7 (___) ___-__-__",
-				i = 0,
-				def = matrix.replace(/\D/g, ""),
-				val = this.value.replace(/\D/g, "");
-		if (def.length >= val.length) val = def;
-		this.value = matrix.replace(/[_\d]/g, function(a) {
-		    return  i < val.length ? val.charAt(i++) :  a
-		});
-		i = this.value.indexOf("_");
-		if(val.length < len) i = this.value.lastIndexOf(val.substr(-1))+1;
-		if (i != -1) {
-		i < 5 && (i = 3);
-		this.value = this.value.slice(0,i);
-		}
-		if (event.type == "blur") {
-			if (this.value.length < 5) this.value = ""
-		} else setCursorPosition(this.value.length, this);
-		len = val.length;
-	}
+	let keyCode;
 
+	function mask(event) {
+		event.keyCode && (keyCode = event.keyCode);
+		let pos = this.selectionStart;
+		if (pos < 3) event.preventDefault();
+		let matrix = "+7 (___) ___-__-__",
+	  		i = 0,
+	  		def = matrix.replace(/\D/g, ""),
+	  		val = this.value.replace(/\D/g, ""),
+		new_value = matrix.replace(/[_\d]/g, function(a) {
+		return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+	});
+	i = new_value.indexOf("_");
+	if (i != -1) {
+		i < 5 && (i = 3);
+		new_value = new_value.slice(0, i);
+	}
+	let reg = matrix.substr(0, this.value.length).replace(/_+/g, function(a) {
+			return "\\d{1," + a.length + "}";
+	  }).replace(/[+()]/g, "\\$&");
+	reg = new RegExp("^" + reg + "$");
+	if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+	if (event.type == "blur" && this.value.length < 5)  this.value = "";
+	}
 	let input = document.querySelector("#tel");
 	input.addEventListener("input", mask, false);
 	input.addEventListener("focus", mask, false);
 	input.addEventListener("blur", mask, false);
-
-
+	input.addEventListener("keydown", mask, false);
 
 	// Modal
 	let more = document.querySelector('.more'),
