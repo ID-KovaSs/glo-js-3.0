@@ -1,7 +1,7 @@
 describe('Проверка на истинность', function() {
 	
 	it('Функция sum возвращает тип данных true?', function() {
-		assert.equal(sum(), true);
+		assert.equal(sum(2,2), true);
 	});
 });
 
