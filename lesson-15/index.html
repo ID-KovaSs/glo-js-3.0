@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 15</title>
+</head>
+<body>
+
+	<div id="mocha"></div>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/5.2.0/mocha.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.1.2/chai.min.js"></script>
+	<script>
+		mocha.setup('bdd');
+		let assert = chai.assert;
+	</script>
+	<script src="test.js"></script>
+	<script src="script.js"></script>
+	<script>
+		mocha.run();
+	</script>
+</body>
+</html>
