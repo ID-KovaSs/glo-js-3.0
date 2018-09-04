@@ -9,6 +9,7 @@ lesson-16/my-app//coverage
 # production
 lesson-16/my-app//build
 # misc
+lesson-16/Lesson16.psd
 lesson-16/my-app/.DS_Store
 lesson-16/my-app/.env.local
 lesson-16/my-app/.env.development.local
