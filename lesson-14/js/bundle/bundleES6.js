@@ -35,7 +35,7 @@ function ajaxForm() {
 	statusMessage.classList.add('status');
 	for (let i = 0; i < form.length; i++) {
 		let input = form[i].getElementsByTagName('input');
-		form[i].addEventListener('submit', function(e) {
+		form[i].addEventListener('submit', (e) => {
 			e.preventDefault();
 			form[i].appendChild(statusMessage);
 			
@@ -49,7 +49,7 @@ function ajaxForm() {
 	 
 			request.send(formData);
 
-			request.onreadystatechange = function() {
+			request.onreadystatechange = () => {
 				if(request.readyState < 4) {
 					statusMessage.innerHTML = message.loading;
 				} else if(request.readyState === 4) {
@@ -86,7 +86,7 @@ function calc() {
 
 	totalValue.innerHTML = 0;
 
-	howManyPeople.addEventListener('input', function(e) {
+	howManyPeople.addEventListener('input', (e) => {
 		let target = e.target.value;
 		// Проверка на ввод + - e и запрет на ввод дробных чисел
 		(target.match(/\d/ig) && target !='')? console.log(target) : howManyPeople.value = '';
@@ -103,7 +103,7 @@ function calc() {
 		}
 	});
 
-	howManyDays.addEventListener('input', function(e) {
+	howManyDays.addEventListener('input', (e) => {
 		let target = e.target.value;
 		// Проверка на ввод + - e и запрет на ввод дробных чисел		
 		(target.match(/\d/ig) && target !='')? console.log(target) : howManyDays.value = '';
@@ -120,7 +120,7 @@ function calc() {
 		}
 	});
 
-	selectBase.addEventListener('change', function() {
+	selectBase.addEventListener('change', () => {
 		if(howManyDays.value == '' || howManyDays.value == '') {
 			totalValue.innerHTML = 0;
 		} else {
@@ -142,7 +142,7 @@ function modal() {
 
 	// Событие всплытия модального окна на табах
 	for (let i = 0; i < descriptionBtn.length; i++) {
-		descriptionBtn[i].addEventListener('click', function() {
+		descriptionBtn[i].addEventListener('click', () => {
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			overlay.style.display = "block";
 			document.body.style.overflow = "hidden";
@@ -172,7 +172,7 @@ function modal() {
 
 
 	// Событие для отображения формы
-	more.addEventListener('click', function() {
+	more.addEventListener('click', () => {
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 			overlay.style.display = "block";
 			document.body.style.overflow = "hidden";
@@ -184,7 +184,7 @@ function modal() {
   	}
 	});
 
-	close.addEventListener('click', function() {
+	close.addEventListener('click', () => {
 		overlay.style.display = "none";
 		more.classList.remove('more-splash');
 		document.body.style.overflow = "";	
@@ -205,7 +205,7 @@ function phoneMask() {
 	  		i = 0,
 	  		def = matrix.replace(/\D/g, ""),
 	  		val = this.value.replace(/\D/g, ""),
-		new_value = matrix.replace(/[_\d]/g, function(a) {
+		new_value = matrix.replace(/[_\d]/g, (a) => {
 		return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
 	});
 	i = new_value.indexOf("_");
@@ -213,7 +213,7 @@ function phoneMask() {
 		i < 5 && (i = 3);
 		new_value = new_value.slice(0, i);
 	}
-	let reg = matrix.substr(0, this.value.length).replace(/_+/g, function(a) {
+	let reg = matrix.substr(0, this.value.length).replace(/_+/g, (a) => {
 			return "\\d{1," + a.length + "}";
 	  }).replace(/[+()]/g, "\\$&");
 	reg = new RegExp("^" + reg + "$");
@@ -240,7 +240,7 @@ function scroll() {
 	let linkNav = document.querySelectorAll('[href^="#"]'), //выбираем все ссылки к якорю на странице
 			speed = 0.5;  // скорость, может иметь дробное значение через точку (чем меньше значение - тем больше скорость)
 	for (let i = 0; i < linkNav.length; i++) {
-		linkNav[i].addEventListener('click', function(e) { //по клику на ссылку
+		linkNav[i].addEventListener('click', (e) => { //по клику на ссылку
 			e.preventDefault(); //отменяем стандартное поведение
 			let w = window.pageYOffset,  // производим прокрутку
 					hash = this.href.replace(/[^#]*(.*)/, '$1');  // к id элемента, к которому нужно перейти
@@ -301,11 +301,11 @@ function slider() {
 		showSlides(slideIndex = n);
 	}
 
-	prev.addEventListener('click', function() {
+	prev.addEventListener('click', () => {
 		plusSlides(-1);
 	});
 
-	next.addEventListener('click', function() {
+	next.addEventListener('click', () => {
 		plusSlides(1);
 	});
 
@@ -342,7 +342,7 @@ function tab() {
 		}
 	}
 
-	info.addEventListener('click', function(e) {
+	info.addEventListener('click', (e) => {
 		let target = e.target;
 
 		if (target.className == 'info-header-tab') {
