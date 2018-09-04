@@ -360,7 +360,7 @@ module.exports = tab;
 },{}],9:[function(require,module,exports){
 function timer() {
 		// Timer 
-	let deadline = '2018-09-03';
+	let deadline = '2018-09-06';
 
 	function getTimeRemaining(endtime) {
 		let t = Date.parse(endtime) - Date.parse(new Date()),

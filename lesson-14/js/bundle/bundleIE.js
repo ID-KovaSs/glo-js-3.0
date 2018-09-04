@@ -384,7 +384,7 @@
 	}, {}], 9: [function (require, module, exports) {
 		function timer() {
 			// Timer 
-			var deadline = '2018-09-03';
+			var deadline = '2018-09-06';
 
 			function getTimeRemaining(endtime) {
 				var t = Date.parse(endtime) - Date.parse(new Date()),
