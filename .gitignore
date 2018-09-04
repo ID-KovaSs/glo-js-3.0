@@ -1,1 +1,20 @@
 lesson-15/node_modules/*
+
+# Lesson 16
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+# dependencies
+lesson-16/my-app/node_modules
+# testing
+lesson-16/my-app//coverage
+# production
+lesson-16/my-app//build
+# misc
+lesson-16/my-app/.DS_Store
+lesson-16/my-app/.env.local
+lesson-16/my-app/.env.development.local
+lesson-16/my-app/.env.test.local
+lesson-16/my-app/.env.production.local
+
+lesson-16/my-app/npm-debug.log*
+lesson-16/my-app/yarn-debug.log*
+lesson-16/my-app/yarn-error.log*
