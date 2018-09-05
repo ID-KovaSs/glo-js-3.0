@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lesson 17 - Simple task</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clock.css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/galleria-1.5.7.min.js"></script>  
+  <script src="js/clock.js"></script>  
+</head>
+<body>
+
+<div class="tabs  vertical">
+
+	<ul class="tabs__caption">
+		<li class="active">Первая вкладка</li>
+		<li>Вторая вкладка</li>
+		<li>Третья вкладка</li>
+	</ul>
+
+	<div class="tabs__content  active">
+    <div class="galleria">
+      <img src="img/photo1.JPG">
+      <img src="img/photo2.JPG">
+      <img src="img/photo3.JPG">
+    </div>
+  </div>
+  <!-- /.tabs__content1-->
+
+	<div class="tabs__content">
+    <div class="clock">
+      <div class="alarm-clock">
+          <div class="date">
+            <span class="month"></span>
+            <span class="day"></span>,
+            <span class="year"></span>
+          </div>
+        
+          <div class="time">
+            <span class="hours"></span>
+            <span class="colon">:</span>
+            <span class="minutes"></span>
+            <span class="colon">:</span>
+            <span class="seconds"></span>
+          </div>
+        </div>
+    </div>
+    <!-- /.calc -->
+  </div>
+  <!-- /.tabs__content2-->
+  
+  <div class="tabs__content">
+    <div class="dowload">
+      <a class="Button" href="#0" data-tooltip="File size: 50MB"><span class="Button__textWrapper"><span class="Button__text">Download GitHub</span><span class="Button__icon" aria-hidden="true"></span></span></a>
+    </div>
+    <!-- /.dowload-->
+  </div>
+
+</div>
+<!-- /.tabs__content3-->
+
+   
+<script>
+  (function() { 
+    Galleria.loadTheme('https://cdnjs.cloudflare.com/ajax/libs/galleria/1.5.7/themes/classic/galleria.classic.min.js');
+    Galleria.configure({
+    transition: 'slide',
+    imageCrop: true,
+    height: 400,
+    weight: 1000,
+    autoplay: 4000, // will move forward every 7 seconds
+    lightbox: true,
+    fullscreenDoubleTap: true,
+    idleMode: true
+    });
+    Galleria.run('.galleria');
+  }());
+</script>
+  
+
+  <script src="js/script.js"></script>
+</body>
+</html>
