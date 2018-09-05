@@ -717,3 +717,10 @@ header ul li:before {
 .overlay .popup-form__btn:hover {
   box-shadow: 0 0 10px #c78030;
 }
+
+.status {
+  height: 80px;
+  margin-top: 20px;
+  margin-left: 250px;
+  margin-right: 250px;
+}

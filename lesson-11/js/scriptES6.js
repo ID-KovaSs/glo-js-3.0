@@ -147,7 +147,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
 	let form = document.getElementsByTagName('form'),
 			// input = form.getElementsByTagName('input'),
-			statusMessage = document.createElement('div');
+			statusMessage = document.createElement('img');
 
 	statusMessage.classList.add('status');
 	for (let i = 0; i < form.length; i++) {
@@ -168,15 +168,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
 			request.onreadystatechange = function() {
 				if(request.readyState < 4) {
-					statusMessage.innerHTML = message.loading;
+					statusMessage.src = "img/send.gif";
 				} else if(request.readyState === 4) {
 					if(request.status == 200 && request.status < 300) {
-						statusMessage.innerHTML = message.success;
+						statusMessage.src = "img/success-mail.gif";
 						// Можно добавить контент на страницу
 					} else {
 						// Выводим сообщение об ошибке
 						console.log(request.status);
-						statusMessage.innerHTML = message.failure;
+						statusMessage.src = "img/error.gif";
 						}
 				}
 			};
