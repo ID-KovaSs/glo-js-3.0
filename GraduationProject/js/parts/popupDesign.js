@@ -3,21 +3,24 @@ function popupDesign() {
   let popupBtn = document.querySelectorAll('.button-design'),
       popupDesign = document.querySelector('.popup-design'),
       closeBtn = document.querySelectorAll('.popup-close')[2];
-      console.log(closeBtn);
+      body = document.querySelector('body');
+      console.log(popupBtn);
 
-// Событие кросбраузерного всплытия модального окна на кнопках
-for (let i = 0; i < popupBtn.length; i++) {
-popupBtn[i].addEventListener('click', function() {
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-  popupDesign.style.display = "block";
-  document.body.style.overflow = "hidden";
-} else if(/MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) {
-   animationAppIn();
-} else {
-  animationPcIn(this);
-}
-});
-}
+  // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
+  body.addEventListener('click', function(e) {
+    let target = e.target;
+    if(target.classList.contains("button-design") && target.classList.contains("button-order")) {
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        console.log(target);
+        popupDesign.style.display = "block";
+        document.body.style.overflow = "hidden";
+        } else if(/MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) {
+          animationAppIn();
+          } else {
+            animationPcIn(this);
+          }
+    }
+  });
 
 // Анимация для десктопных браузеров
 function animationPcIn(param) {

@@ -847,7 +847,7 @@ h4 {
   position: absolute;
   bottom: -3rem;
   left: 15rem;
-  z-index: 1000000;
+  z-index: 3;
 }
 .feedback-block .button-order:before {
   content: '';
