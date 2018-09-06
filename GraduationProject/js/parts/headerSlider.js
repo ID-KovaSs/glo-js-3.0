@@ -20,7 +20,6 @@ function headerSlider() {
     if(n > slides.length) {
       slideIndex = 0;
       showSlides();
-      console.log(slideIndex);
 		}
 		if (n < slides.length && n != slides.length) {
       showSlides();

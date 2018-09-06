@@ -2,12 +2,14 @@
 /*jshint esversion: 6 */
 window.addEventListener('DOMContentLoaded', function() {
 
-	let slider = require('../parts/slider.js');
+	let headerSlider = require('../parts/headerSlider.js');
+	let popupDesign = require('../parts/popupDesign.js');
 	
-	slider();
+	headerSlider();
+	popupDesign();
 	
 });
-},{"../parts/slider.js":2}],2:[function(require,module,exports){
+},{"../parts/headerSlider.js":2,"../parts/popupDesign.js":3}],2:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -26,17 +28,14 @@ function headerSlider() {
   }
   
   function timerSlider(n) {
-    
+    // Проверка на позицию слайда, в случае если количесво слайдов увеличится
     if(n > slides.length) {
       slideIndex = 0;
       showSlides();
-      console.log(slideIndex);
 		}
 		if (n < slides.length && n != slides.length) {
       showSlides();
     }
-
-  
   }
   
   setTimeout(function run() {
@@ -47,7 +46,47 @@ function headerSlider() {
 
 }
 
-
-
 module.exports = headerSlider;
+},{}],3:[function(require,module,exports){
+function popupDesign() {
+
+  let popupBtn = document.querySelectorAll('.button-design'),
+      popupDesign = document.querySelector('.popup-design'),
+      closeBtn = document.querySelectorAll('.popup-close')[2];
+      console.log(closeBtn);
+
+// Событие кросбраузерного всплытия модального окна на кнопках
+for (let i = 0; i < popupBtn.length; i++) {
+popupBtn[i].addEventListener('click', function() {
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  popupDesign.style.display = "block";
+  document.body.style.overflow = "hidden";
+} else if(/MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) {
+   animationAppIn();
+} else {
+  animationPcIn(this);
+}
+});
+}
+
+// Анимация для десктопных браузеров
+function animationPcIn(param) {
+  popupDesign.style.display = "block";
+  document.body.style.overflow = "hidden";
+
+}
+// Для мобильных приложений
+function animationAppIn() {
+  // popupDesign.classList.add('fadeIn');
+  popupDesign.style.display = "block";
+  document.body.style.overflow = "hidden";	
+}
+
+closeBtn.addEventListener('click', () => {
+  popupDesign.style.display = "none";
+  document.body.style.overflow = "";	
+});
+}
+
+module.exports = popupDesign;
 },{}]},{},[1]);
