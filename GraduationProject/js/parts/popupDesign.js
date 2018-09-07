@@ -1,10 +1,12 @@
-function popupDesign() {
+function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
       popupConsult = document.querySelector('.popup-consultation'),
-      closeBtn = document.querySelectorAll('.popup-close')[2],
+      popupGift = document.querySelector('.popup-gift'),
       body = document.querySelector('body'),
+      buttonGiftRemove = document.querySelector('.fixed-gift'),
       buttonDesign = false,
+      buttonGift = false,
       buttonConsult = false;
 
   // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
@@ -12,7 +14,7 @@ function popupDesign() {
     let target = e.target,
         mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
-
+    // Проверка на нажатие кнопки buttonDesign
     if(target.classList.contains("button-design") && target.classList.contains("button-order")) {
       if( mobileAgent ) {
         buttonDesign = true;
@@ -25,7 +27,7 @@ function popupDesign() {
             animationPcIn(this);
           }
     }
-
+    // Проверка на нажатие кнопки buttonConsult
     if(target.classList.contains("button-consultation") && target.classList.contains("button-order")) {
       if( mobileAgent ) {
         buttonConsult = true;
@@ -38,18 +40,40 @@ function popupDesign() {
             animationPcIn(this);
           }
     }
+    // Проверка на нажатие кнопки buttonGift
+    if(target.classList.contains("fixed-gift")) {
+      if( mobileAgent ) {
+        buttonGift = true;
+        animationAppIn();
+        } else if(IEAgent) {
+          buttonGift = true;
+          animationAppIn();
+          } else {
+            buttonGift = true;
+            animationPcIn(this);
+          }
+    }
   });
 
 // Анимация для десктопных браузеров
 function animationPcIn(param) {
+  console.log("десктопное сособытие");
+  // Отображение дизайн-формы
   if(buttonDesign) {
-    console.log("десктопное сособытие");
+    buttonGiftRemove.style.display = "none";
     popupDesign.style.display = "block";
     document.body.style.overflow = "hidden";
   }
+  // Отображение формы-консультации
   if(buttonConsult) {
-    console.log("десктопное сособытие");
+    buttonGiftRemove.style.display = "none";
     popupConsult.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }
+  // Отображение формы с подарком
+  if(buttonGift) {
+    buttonGiftRemove.style.display = "none";
+    popupGift.style.display = "block";
     document.body.style.overflow = "hidden";
   }
 
@@ -57,9 +81,24 @@ function animationPcIn(param) {
 // Для мобильных приложений
 function animationAppIn() {
   console.log("мобильное сособытие");
+  // Отображение дизайн-формы
+  if(buttonDesign) {
   popupDesign.classList.add('fadeIn');
   popupDesign.style.display = "block";
-  document.body.style.overflow = "hidden";	
+  document.body.style.overflow = "hidden";
+  }
+  // Отображение формы-консультации
+  if(buttonDesign) {
+  popupConsult.classList.add('fadeIn');
+  popupConsult.style.display = "block";
+  document.body.style.overflow = "hidden";
+  }
+  // Отображение формы с подарком
+  if(buttonDesign) {
+  popupGift.classList.add('fadeIn');
+  popupGift.style.display = "block";
+  document.body.style.overflow = "hidden";
+  }
 }
 
 body.addEventListener('click', function(e) {
@@ -67,18 +106,24 @@ body.addEventListener('click', function(e) {
   if(target.classList.contains("popup-close")){
     buttonDesign = false;
     buttonConsult = false;
+    buttonGift = false;
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
+    popupGift.style.display = "none";
+    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
-  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
+  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation") || target.classList.contains("popup-gift")){
     buttonDesign = false;
     buttonConsult = false;
+    buttonGift = false;
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
+    popupGift.style.display = "none";
+    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
 });
 }
 
-module.exports = popupDesign;
+module.exports = popup;

@@ -1019,6 +1019,12 @@ h4 {
   width: 100%;
   height: 100%;
   background-color: rgba(178, 80, 188, 0.8);
+  -webkit-animation-name: fade;
+  animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
 }
 .popup-consultation .button-transparent {
   border: 2px dashed #c51abb;
@@ -1089,6 +1095,12 @@ h4 {
   width: 100%;
   height: 100%;
   background-color: rgba(178, 80, 188, 0.8);
+  -webkit-animation-name: fade;
+  animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
 }
 .popup-gift h2 {
   padding-bottom: 2rem;

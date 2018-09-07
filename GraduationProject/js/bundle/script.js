@@ -2,9 +2,11 @@
 window.addEventListener('DOMContentLoaded', function() {
 
 	let headerSlider = require('../parts/headerSlider.js');
-	let popupDesign = require('../parts/popupDesign.js');
+	let popup = require('../parts/popup.js');
+	let addBlocks = require('../parts/addBlocks.js');
 	
 	headerSlider();
-	popupDesign();
+	popup();
+	addBlocks();
 	
 });
