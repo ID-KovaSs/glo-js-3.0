@@ -3,13 +3,30 @@
 window.addEventListener('DOMContentLoaded', function() {
 
 	let headerSlider = require('../parts/headerSlider.js');
-	let popupDesign = require('../parts/popupDesign.js');
+	let popup = require('../parts/popup.js');
+	let addBlocks = require('../parts/addBlocks.js');
 	
 	headerSlider();
-	popupDesign();
+	popup();
+	addBlocks();
 	
 });
-},{"../parts/headerSlider.js":2,"../parts/popupDesign.js":3}],2:[function(require,module,exports){
+},{"../parts/addBlocks.js":2,"../parts/headerSlider.js":3,"../parts/popup.js":4}],2:[function(require,module,exports){
+function addBlocks() {
+  let blocksBtn = document.getElementById('addBlocksBtn'),
+      hiddenBlocks = document.querySelectorAll('.hidden-lg');
+      console.log(hiddenBlocks);
+
+  blocksBtn.addEventListener('click', () => {
+    for(let i = 0; i < hiddenBlocks.length; i++) {
+      hiddenBlocks[i].className = "col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1";
+      blocksBtn.style.display = "none";
+     }
+  });
+}
+
+module.exports = addBlocks;
+},{}],3:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -47,8 +64,8 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],3:[function(require,module,exports){
-function popupDesign() {
+},{}],4:[function(require,module,exports){
+function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
       popupConsult = document.querySelector('.popup-consultation'),
@@ -176,5 +193,5 @@ body.addEventListener('click', function(e) {
 });
 }
 
-module.exports = popupDesign;
+module.exports = popup;
 },{}]},{},[1]);

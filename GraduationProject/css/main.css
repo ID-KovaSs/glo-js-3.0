@@ -436,6 +436,12 @@ h4 {
   padding: 3rem;
   background-color: #f7e7e6;
   margin-bottom: 3rem;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-name: fadeInUp;
+  -webkit-animation-duration: 1.5s;
 }
 .styles-block img {
   max-width: 100%;
@@ -1802,5 +1808,16 @@ h4 {
   }
   to {
     opacity: 0;
+  }
+}
+/* Анимация для всплытия блоков */
+@keyframes fadeInUp {
+  from {
+    opacity:0;
+    transform:translate3d(0,100%,0)
+  }
+  to {
+    opacity:1;
+    transform:none
   }
 }
