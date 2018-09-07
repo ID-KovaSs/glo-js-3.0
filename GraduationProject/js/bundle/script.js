@@ -4,9 +4,11 @@ window.addEventListener('DOMContentLoaded', function() {
 	let headerSlider = require('../parts/headerSlider.js');
 	let popup = require('../parts/popup.js');
 	let addBlocks = require('../parts/addBlocks.js');
+	let portfolioTabs = require('../parts/portfolioTabs.js');
 	
 	headerSlider();
 	popup();
 	addBlocks();
+	portfolioTabs();
 	
 });

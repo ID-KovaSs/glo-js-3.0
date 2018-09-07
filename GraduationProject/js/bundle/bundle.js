@@ -5,17 +5,18 @@ window.addEventListener('DOMContentLoaded', function() {
 	let headerSlider = require('../parts/headerSlider.js');
 	let popup = require('../parts/popup.js');
 	let addBlocks = require('../parts/addBlocks.js');
+	let portfolioTabs = require('../parts/portfolioTabs.js');
 	
 	headerSlider();
 	popup();
 	addBlocks();
+	portfolioTabs();
 	
 });
-},{"../parts/addBlocks.js":2,"../parts/headerSlider.js":3,"../parts/popup.js":4}],2:[function(require,module,exports){
+},{"../parts/addBlocks.js":2,"../parts/headerSlider.js":3,"../parts/popup.js":4,"../parts/portfolioTabs.js":5}],2:[function(require,module,exports){
 function addBlocks() {
   let blocksBtn = document.getElementById('addBlocksBtn'),
       hiddenBlocks = document.querySelectorAll('.hidden-lg');
-      console.log(hiddenBlocks);
 
   blocksBtn.addEventListener('click', () => {
     for(let i = 0; i < hiddenBlocks.length; i++) {
@@ -177,7 +178,6 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
   if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation") || target.classList.contains("popup-gift")){
@@ -187,11 +187,32 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
 });
 }
 
 module.exports = popup;
+},{}],5:[function(require,module,exports){
+function portfolioTabs() {
+  let portfBlocks = document.querySelectorAll('.portfolio-block'),
+      portfMenu = document.querySelector('.portfolio-menu'),
+      portfNo = document.querySelector('.portfolio-no');
+      console.log(portfMenu);
+
+  portfMenu.addEventListener('click', function(e) {
+    let target = e.target;
+    console.log(target);
+       
+    if(target.tagName = "li") {
+      for (let i = 0; i < portfMenu.length; i++) {
+        portfMenu[i].classList.remove('active');     
+      }
+      target.classList.add('active');
+    }
+
+  });
+}
+
+module.exports = portfolioTabs;
 },{}]},{},[1]);

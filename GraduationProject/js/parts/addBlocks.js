@@ -1,7 +1,6 @@
 function addBlocks() {
   let blocksBtn = document.getElementById('addBlocksBtn'),
       hiddenBlocks = document.querySelectorAll('.hidden-lg');
-      console.log(hiddenBlocks);
 
   blocksBtn.addEventListener('click', () => {
     for(let i = 0; i < hiddenBlocks.length; i++) {

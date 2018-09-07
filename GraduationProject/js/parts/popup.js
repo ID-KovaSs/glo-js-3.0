@@ -110,7 +110,6 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
   if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation") || target.classList.contains("popup-gift")){
@@ -120,7 +119,6 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    buttonGiftRemove.style.display = "block";
     document.body.style.overflow = "";	
   }
 });
