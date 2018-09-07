@@ -71,6 +71,13 @@ body.addEventListener('click', function(e) {
     popupConsult.style.display = "none";
     document.body.style.overflow = "";	
   }
+  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
+    buttonDesign = false;
+    buttonConsult = false;
+    popupDesign.style.display = "none";
+    popupConsult.style.display = "none";
+    document.body.style.overflow = "";	
+  }
 });
 }
 
