@@ -649,6 +649,12 @@ h4 {
 .portfolio-block {
   width: 20%;
   padding: 0.5rem;
+  -webkit-animation-name: fade;
+  animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
 }
 .portfolio-block img {
   max-width: 100%;
@@ -661,6 +667,12 @@ h4 {
   font-size: 3rem;
   display: none;
   margin: 15rem 0;
+  -webkit-animation-name: fade;
+  animation-name: fade;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1s;
 }
 .gift {
   background: url('../img/gift-bg.jpg') no-repeat;
@@ -1810,14 +1822,4 @@ h4 {
     opacity: 0;
   }
 }
-/* Анимация для всплытия блоков */
-@keyframes fadeInUp {
-  from {
-    opacity:0;
-    transform:translate3d(0,100%,0)
-  }
-  to {
-    opacity:1;
-    transform:none
-  }
-}
+

@@ -110,14 +110,19 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    document.body.style.overflow = "";	
+    document.body.style.overflow = "";
+    buttonGiftRemove.style.display = "block";	
   }
-  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation") || target.classList.contains("popup-gift")){
+  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
     buttonDesign = false;
     buttonConsult = false;
-    buttonGift = false;
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
+    document.body.style.overflow = "";
+    buttonGiftRemove.style.display = "block";	
+  }
+  if(target.classList.contains("popup-gift")) {
+    buttonGift = false;
     popupGift.style.display = "none";
     document.body.style.overflow = "";	
   }

@@ -178,14 +178,19 @@ body.addEventListener('click', function(e) {
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
     popupGift.style.display = "none";
-    document.body.style.overflow = "";	
+    document.body.style.overflow = "";
+    buttonGiftRemove.style.display = "block";	
   }
-  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation") || target.classList.contains("popup-gift")){
+  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
     buttonDesign = false;
     buttonConsult = false;
-    buttonGift = false;
     popupDesign.style.display = "none";
     popupConsult.style.display = "none";
+    document.body.style.overflow = "";
+    buttonGiftRemove.style.display = "block";	
+  }
+  if(target.classList.contains("popup-gift")) {
+    buttonGift = false;
     popupGift.style.display = "none";
     document.body.style.overflow = "";	
   }
@@ -197,19 +202,42 @@ module.exports = popup;
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),
+      portfMenuItems = document.querySelectorAll('.portfolio-menu li'),
       portfNo = document.querySelector('.portfolio-no');
-      console.log(portfMenu);
 
+  portfMenuItems[0].classList.add('active');
+
+  function getActive(e) {
+    if(e.tagName = "li") {
+      for (let i = 0; i < portfMenuItems.length; i++) {
+        portfMenuItems[i].classList.remove('active');     
+      }
+      e.classList.add('active');
+    }
+  }
+
+  function showBlock(e) {
+    let checkClass = e.classList[0];
+    // Проверка на отсутствующие блоки в портфолио
+    if(e.classList.contains('grandmother') || e.classList.contains('granddad')){
+      portfNo.style.display = "block";
+    } else {
+      portfNo.style.display = "none";
+    }
+    // Отображение блоков соответствующих классу меню
+    for (let i = 0; i < portfBlocks.length; i++) {
+      if(portfBlocks[i].classList.contains(`${checkClass}`)) {
+        portfBlocks[i].style.display = "block";
+      } else {
+        portfBlocks[i].style.display = "none";
+      }       
+    }
+  }
+ 
   portfMenu.addEventListener('click', function(e) {
     let target = e.target;
-    console.log(target);
-       
-    if(target.tagName = "li") {
-      for (let i = 0; i < portfMenu.length; i++) {
-        portfMenu[i].classList.remove('active');     
-      }
-      target.classList.add('active');
-    }
+    getActive(target);
+    showBlock(target);
 
   });
 }
