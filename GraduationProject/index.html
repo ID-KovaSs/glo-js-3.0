@@ -235,24 +235,24 @@
 							<div>Файл не выбран</div>
 							<input type=file name=upload>
 						</div>
-						<select id=size>
-							<option >Выберите размер картины</option>
-							<option >40x50</option>
-							<option >50x70</option>
-							<option >70x70</option>
-							<option >70x100</option>
+						<select id="size">
+							<option value="0">Выберите размер картины</option>
+							<option value="500">40x50 <i>+ 500 рублей</i> </option>
+							<option value="1000">50x70 <i>+ 1000 рублей</i> </option>
+							<option value="1500">70x70 <i>+ 1500 рублей</i> </option>
+							<option value="2000">70x100 <i>+ 2000 рублей</i> </option>
 						</select>
-						<select id=material>
-							<option >Выберите материал картины</option>
-							<option   title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option   title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
-							<option  title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
+						<select id="material">
+							<option value="0">Выберите материал картины</option>
+							<option value="500"  title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна <i>+ 500 рублей</i> </option>
+							<option value="1000"  title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст <i>+ 1000 рублей</i> </option>
+							<option value="1500" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка <i>+ 1500 рублей</i> </option>
 						</select>
-						<select id=options>
-							<option >Дополнительные услуги</option>
-							<option >Покрытие арт-гелем</option>
-							<option >Экспресс-изготовление</option>
-							<option >Доставка готовых работ </option>
+						<select id="options">
+							<option value="0">Дополнительные услуги</option>
+							<option value="500">Покрытие арт-гелем <i>+ 500 рублей</i> </option>
+							<option value="1000">Экспресс-изготовление <i>+ 1000 рублей</i> </option>
+							<option value="1500">Доставка готовых работ <i>+ 1500 рублей</i>  </option>
 						</select>
 						<input type="text" class="promocode" placeholder="Введите ваш промокод">
 						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
@@ -677,7 +677,7 @@
 				<button class="popup-close">&times;</button>
 				<h2>У нас для вас есть подарок!</h2>
 				<img src="img/gift.png" alt="">
-				<p>Введите промо-код IWANTPOPART и получите скидку 30% на портрет любого размера в стиле pop-art!</p>
+				<p>Введите промо-код <mark class="copy" >IWANTPOPART</mark> и получите скидку 30% на портрет любого размера в стиле pop-art!</p>
 			</div>
 		</div>
 	</div>

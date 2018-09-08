@@ -6,14 +6,16 @@ window.addEventListener('DOMContentLoaded', function() {
 	let popup = require('../parts/popup.js');
 	let addBlocks = require('../parts/addBlocks.js');
 	let portfolioTabs = require('../parts/portfolioTabs.js');
+	let calc = require('../parts/calc.js');
 	
 	headerSlider();
 	popup();
 	addBlocks();
 	portfolioTabs();
+	calc();
 	
 });
-},{"../parts/addBlocks.js":2,"../parts/headerSlider.js":3,"../parts/popup.js":4,"../parts/portfolioTabs.js":5}],2:[function(require,module,exports){
+},{"../parts/addBlocks.js":2,"../parts/calc.js":3,"../parts/headerSlider.js":4,"../parts/popup.js":5,"../parts/portfolioTabs.js":6}],2:[function(require,module,exports){
 function addBlocks() {
   let blocksBtn = document.getElementById('addBlocksBtn'),
       hiddenBlocks = document.querySelectorAll('.hidden-lg');
@@ -28,6 +30,85 @@ function addBlocks() {
 
 module.exports = addBlocks;
 },{}],3:[function(require,module,exports){
+function calc() {
+  let size = document.querySelector('#size'),
+      material = document.querySelector('#material'),
+      options = document.querySelector('#options'),
+      promocode = document.querySelector('.promocode'),
+      calcPrice = document.querySelector('.calc-price'),
+      calc = document.querySelector('.calc');
+
+  disableSelect();
+  // Вычисление суммы
+  function sumPrice() {
+    let sum = Number(size.value) + Number(material.value) + Number(options.value);
+    // Проверка на ввод промокода
+    if (promocode.value.match( /IWANTPOPART/ig )) sum = sum - sum * 0.3;
+    return sum;
+  }
+  // Добавление суммы на страницу
+  function innerSum() {
+    calcPrice.style.fontFamily = "'Circe Extra Bold', sans-serif";
+    calcPrice.style.fontSize = "5rem";
+    calcPrice.style.padding = "3rem 7.5rem";
+  }
+
+  function clearSum() {
+    calcPrice.textContent = "Для расчета нужно выбрать размер картины и материал картины";
+    calcPrice.style.fontFamily = "";
+    calcPrice.style.fontSize = "";
+    calcPrice.style.padding = "";
+  } 
+
+  // Обнуление всех инпутов
+  function disableSelect() {
+    material.value = 0;
+    options.value = 0;
+    material.disabled = true;
+    material.style.color = "red";
+    options.disabled = true;
+    options.style.color = "red";
+  }
+  // Проверка на порядок ввода
+  function checkInput(e){
+    if(size.value == "0") {
+      disableSelect();
+      clearSum();
+    }
+    if(size.value != 0) {
+      if(size.value != 0 && material.value != 0){
+        calcPrice.textContent = sumPrice();
+      } else {
+        clearSum();
+      }
+      material.disabled = false;
+      material.style.color = "";
+    } else {
+      disableSelect();
+    }
+    if(material.value != 0) {
+      calcPrice.textContent = sumPrice();
+      innerSum();
+      options.disabled = false;
+      options.style.color = "";
+    } else {
+      options.value = 0;
+      options.disabled = true;
+      options.style.color = "red";
+    }
+  }
+
+  calc.addEventListener('change', function(e) {
+    let target = e.target;
+    checkInput(target);
+    if(target.classList.contains("promocode")) {
+      checkInput(target);
+    }
+  });
+}
+
+module.exports = calc;
+},{}],4:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -65,7 +146,7 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
@@ -73,6 +154,7 @@ function popup() {
       popupGift = document.querySelector('.popup-gift'),
       body = document.querySelector('body'),
       buttonGiftRemove = document.querySelector('.fixed-gift'),
+      promocode = document.querySelector('.promocode'),
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false;
@@ -194,11 +276,18 @@ body.addEventListener('click', function(e) {
     popupGift.style.display = "none";
     document.body.style.overflow = "";	
   }
+  if(target.classList.contains("copy")) {
+    let promoCopied = target.textContent;
+    promocode.value = promoCopied;
+    target.style.backgroundColor = '#B6FF7A';
+    target.setAttribute("title", "Промокод применен");
+  }
 });
 }
 
+
 module.exports = popup;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),

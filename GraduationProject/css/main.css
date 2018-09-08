@@ -1130,6 +1130,9 @@ h4 {
 .popup-gift p {
   margin-top: 2rem;
 }
+.popup-gift mark {
+  cursor: pointer;
+}
 .popup-close {
   position: absolute;
   top: -5rem;
@@ -1823,3 +1826,7 @@ h4 {
   }
 }
 
+.calc-summ {
+  font-family: 'Circe Extra Bold', sans-serif !important;
+  font-size: 1.9rem !important;
+}

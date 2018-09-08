@@ -5,6 +5,7 @@ function popup() {
       popupGift = document.querySelector('.popup-gift'),
       body = document.querySelector('body'),
       buttonGiftRemove = document.querySelector('.fixed-gift'),
+      promocode = document.querySelector('.promocode'),
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false;
@@ -126,7 +127,14 @@ body.addEventListener('click', function(e) {
     popupGift.style.display = "none";
     document.body.style.overflow = "";	
   }
+  if(target.classList.contains("copy")) {
+    let promoCopied = target.textContent;
+    promocode.value = promoCopied;
+    target.style.backgroundColor = '#B6FF7A';
+    target.setAttribute("title", "Промокод применен");
+  }
 });
 }
+
 
 module.exports = popup;
