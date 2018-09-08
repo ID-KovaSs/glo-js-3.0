@@ -520,6 +520,7 @@ h4 {
   display: block;
   font-size: 1.9rem;
   padding: 2rem 0;
+  width: 100%;
 }
 .calc .promocode {
   opacity: 0.6;
@@ -530,6 +531,9 @@ h4 {
   display: block;
   font-size: 1.9rem;
   padding: 2rem 0;
+}
+.promocode {
+  text-align: center;
 }
 .calc #size {
   margin-top: 3rem;
@@ -566,7 +570,7 @@ h4 {
 }
 .calc .file_upload > button {
   float: right;
-  width: 8em;
+  /* width: 8em; */
   /* example */
 
   height: 100%;
@@ -1305,6 +1309,12 @@ h4 {
   border-radius: 4px;
   transform: translateX(-50%) !important;
   padding: 3rem 6rem 4rem 6rem;
+}
+.calc .file_upload > div{
+  display: none;
+}
+.file_upload > button {
+  width: 100%;
 }
 @media (max-width: 1399px) {
   .paints {

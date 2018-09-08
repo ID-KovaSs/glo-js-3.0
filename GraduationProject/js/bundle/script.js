@@ -6,11 +6,13 @@ window.addEventListener('DOMContentLoaded', function() {
 	let addBlocks = require('../parts/addBlocks.js');
 	let portfolioTabs = require('../parts/portfolioTabs.js');
 	let calc = require('../parts/calc.js');
+	let replaceImg = require('../parts/replaceImg.js');
 	
 	headerSlider();
 	popup();
 	addBlocks();
 	portfolioTabs();
 	calc();
+	replaceImg();
 	
 });
