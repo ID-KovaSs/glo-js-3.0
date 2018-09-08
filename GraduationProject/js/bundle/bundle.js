@@ -346,26 +346,26 @@ function replaceImg() {
   function showImg(e) {
     if(e.classList.contains('size-1')) {
       eventTarget = 'size-1';
-      replaceTarget = '../../img/sizes-1.png';
-      secondTarget = '../../img/sizes-1-1.png';
+      replaceTarget = 'img/sizes-1.png';
+      secondTarget = 'img/sizes-1-1.png';
       sizesBlockNum = 0;
     }
     if(e.classList.contains('size-2')) {
       eventTarget = 'size-2';
-      replaceTarget = '../../img/sizes-2.png';
-      secondTarget = '../../img/sizes-2-1.png';
+      replaceTarget = 'img/sizes-2.png';
+      secondTarget = 'img/sizes-2-1.png';
       sizesBlockNum = 1;
     }
     if(e.classList.contains('size-3')) {
       eventTarget = 'size-3';
-      replaceTarget = '../../img/sizes-3.png';
-      secondTarget = '../../img/sizes-3-1.png';
+      replaceTarget = 'img/sizes-3.png';
+      secondTarget = 'img/sizes-3-1.png';
       sizesBlockNum = 2;
     }
     if(e.classList.contains('size-4')) {
       eventTarget = 'size-4';
-      replaceTarget = '../../img/sizes-4.png';
-      secondTarget = '../../img/sizes-4-1.png';
+      replaceTarget = 'img/sizes-4.png';
+      secondTarget = 'img/sizes-4-1.png';
       sizesBlockNum = 3;
     }
   }
