@@ -8,10 +8,14 @@ function popup() {
       promocode = document.querySelector('.promocode'),
       buttonDesign = false,
       buttonGift = false,
-      buttonConsult = false;
+      buttonConsult = false,
+      timeTrigger = 60000;
 
-  // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
+  timePopup(timeTrigger);
+
+   // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
   body.addEventListener('click', function(e) {
+    clearTimeout(timePopup);
     let target = e.target,
         mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
@@ -56,84 +60,103 @@ function popup() {
     }
   });
 
-// Анимация для десктопных браузеров
-function animationPcIn(param) {
-  console.log("десктопное сособытие");
-  // Отображение дизайн-формы
-  if(buttonDesign) {
-    buttonGiftRemove.style.display = "none";
+  // Анимация для десктопных браузеров
+  function animationPcIn(param) {
+    console.log("десктопное сособытие");
+    // Отображение дизайн-формы
+    if(buttonDesign) {
+      buttonGiftRemove.style.display = "none";
+      popupDesign.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+    // Отображение формы-консультации
+    if(buttonConsult) {
+      buttonGiftRemove.style.display = "none";
+      popupConsult.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+    // Отображение формы с подарком
+    if(buttonGift) {
+      buttonGiftRemove.style.display = "none";
+      popupGift.style.display = "block";
+      document.body.style.overflow = "hidden";
+    }
+
+  }
+  // Для мобильных приложений
+  function animationAppIn() {
+    console.log("мобильное сособытие");
+    // Отображение дизайн-формы
+    if(buttonDesign) {
+    popupDesign.classList.add('fadeIn');
     popupDesign.style.display = "block";
     document.body.style.overflow = "hidden";
-  }
-  // Отображение формы-консультации
-  if(buttonConsult) {
-    buttonGiftRemove.style.display = "none";
+    }
+    // Отображение формы-консультации
+    if(buttonDesign) {
+    popupConsult.classList.add('fadeIn');
     popupConsult.style.display = "block";
     document.body.style.overflow = "hidden";
-  }
-  // Отображение формы с подарком
-  if(buttonGift) {
-    buttonGiftRemove.style.display = "none";
+    }
+    // Отображение формы с подарком
+    if(buttonDesign) {
+    popupGift.classList.add('fadeIn');
     popupGift.style.display = "block";
     document.body.style.overflow = "hidden";
+    }
   }
 
-}
-// Для мобильных приложений
-function animationAppIn() {
-  console.log("мобильное сособытие");
-  // Отображение дизайн-формы
-  if(buttonDesign) {
-  popupDesign.classList.add('fadeIn');
-  popupDesign.style.display = "block";
-  document.body.style.overflow = "hidden";
+  function timePopup(e) {
+    let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
+    setTimeout(function() {
+      if( mobileAgent ) {
+        buttonConsult = true;
+        animationAppIn();
+        } else if(IEAgent) {
+          buttonConsult = true;
+          animationAppIn();
+          } else {
+            buttonConsult = true;
+            animationPcIn(this);
+          }
+    }, e)
   }
-  // Отображение формы-консультации
-  if(buttonDesign) {
-  popupConsult.classList.add('fadeIn');
-  popupConsult.style.display = "block";
-  document.body.style.overflow = "hidden";
-  }
-  // Отображение формы с подарком
-  if(buttonDesign) {
-  popupGift.classList.add('fadeIn');
-  popupGift.style.display = "block";
-  document.body.style.overflow = "hidden";
-  }
-}
 
-body.addEventListener('click', function(e) {
-  let target = e.target;
-  if(target.classList.contains("popup-close")){
-    buttonDesign = false;
-    buttonConsult = false;
-    buttonGift = false;
-    popupDesign.style.display = "none";
-    popupConsult.style.display = "none";
-    popupGift.style.display = "none";
-    document.body.style.overflow = "";
-    buttonGiftRemove.style.display = "block";	
-  }
-  if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
-    buttonDesign = false;
-    buttonConsult = false;
-    popupDesign.style.display = "none";
-    popupConsult.style.display = "none";
-    document.body.style.overflow = "";
-    buttonGiftRemove.style.display = "block";	
-  }
-  if(target.classList.contains("popup-gift")) {
-    buttonGift = false;
-    popupGift.style.display = "none";
-    document.body.style.overflow = "";	
-  }
-  if(target.classList.contains("copy")) {
-    let promoCopied = target.textContent;
-    promocode.value = promoCopied;
-    target.style.backgroundColor = '#B6FF7A';
-    target.setAttribute("title", "Промокод применен");
-  }
-});
+  body.addEventListener('click', function(e) {
+    let target = e.target;
+    if(target.classList.contains("popup-close")){
+      buttonDesign = false;
+      buttonConsult = false;
+      buttonGift = false;
+      popupDesign.style.display = "none";
+      popupConsult.style.display = "none";
+      popupGift.style.display = "none";
+      document.body.style.overflow = "";
+      buttonGiftRemove.style.display = "block";	
+    }
+    if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
+      buttonDesign = false;
+      buttonConsult = false;
+      popupDesign.style.display = "none";
+      popupConsult.style.display = "none";
+      document.body.style.overflow = "";
+      buttonGiftRemove.style.display = "block";	
+    }
+    if(target.classList.contains("popup-gift")) {
+      buttonGift = false;
+      popupGift.style.display = "none";
+      document.body.style.overflow = "";	
+    }
+    if(target.classList.contains("copy")) {
+      let promoCopied = target.textContent;
+      promocode.value = promoCopied;
+      target.style.backgroundColor = '#B6FF7A';
+      target.setAttribute("title", "Промокод применен");
+    }
+  });
+
+
 }
 
 
