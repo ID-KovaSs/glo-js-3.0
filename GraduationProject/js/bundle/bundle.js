@@ -160,7 +160,7 @@ function popup() {
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false,
-      timeTrigger = 6000;
+      timeTrigger = 60000;
 
   timePopup(timeTrigger);
 
