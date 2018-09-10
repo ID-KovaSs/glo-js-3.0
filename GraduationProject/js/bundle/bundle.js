@@ -81,9 +81,9 @@ function accordion() {
       body = document.querySelector('body'),
       burgerMenu = document.querySelector('.burger-menu');
 
-  function hideMenu() {
+  function hideMenu(e) {
     burgerMenu.style.display = "none";
-    if(!e.classList.contains('burger-menu')) {
+    if(!e.classList.contains('burger-menu') || e.parentElement.classList.contains('burger')) {
       burgerMenu.style.display = "none";
     }
   }
