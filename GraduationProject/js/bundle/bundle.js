@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	let calc = require('../parts/calc.js');
 	let replaceImg = require('../parts/replaceImg.js');
 	let accordion = require('../parts/accordion.js');
+	let burgerMenu = require('../parts/burgerMenu.js');
 	
 	headerSlider();
 	popup();
@@ -17,9 +18,10 @@ window.addEventListener('DOMContentLoaded', function() {
 	calc();
 	replaceImg();
 	accordion();
+	burgerMenu();
 	
 });
-},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/calc.js":4,"../parts/headerSlider.js":5,"../parts/popup.js":6,"../parts/portfolioTabs.js":7,"../parts/replaceImg.js":8}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/burgerMenu.js":4,"../parts/calc.js":5,"../parts/headerSlider.js":6,"../parts/popup.js":7,"../parts/portfolioTabs.js":8,"../parts/replaceImg.js":9}],2:[function(require,module,exports){
 function accordion() {
     let accordion = document.querySelector('#accordion'),
       accorHead = document.querySelectorAll('.accordion-heading'),
@@ -50,8 +52,6 @@ function accordion() {
 
   accordion.addEventListener('click', function(e) {
     let target = e.target;
-    console.log(target);
-    console.log(target.parentElement);
     removeActive();
     if(target.parentElement.classList.contains('accordion-heading')) {
       target.parentElement.classList.add('active');
@@ -76,6 +76,32 @@ function addBlocks() {
 
 module.exports = addBlocks;
 },{}],4:[function(require,module,exports){
+function accordion() {
+  let burgerBtn = document.querySelector('.burger'),
+      body = document.querySelector('body'),
+      burgerMenu = document.querySelector('.burger-menu');
+
+  function hideMenu() {
+    burgerMenu.style.display = "none";
+    if(!e.classList.contains('burger-menu')) {
+      burgerMenu.style.display = "none";
+    }
+  }
+
+  body.addEventListener('click', (e) => {
+    let target = e.target;
+    console.log(target);
+    if(window.innerWidth < 768 && burgerMenu.style.display == "none" || target.parentElement.classList.contains('burger')) {
+      burgerMenu.style.display = "block";
+    } else {
+      hideMenu(target);
+    }
+  });
+  
+}
+
+module.exports = accordion;
+},{}],5:[function(require,module,exports){
 function calc() {
   let size = document.querySelector('#size'),
       material = document.querySelector('#material'),
@@ -154,7 +180,7 @@ function calc() {
 }
 
 module.exports = calc;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -192,7 +218,7 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
@@ -387,7 +413,7 @@ function popup() {
 
 
 module.exports = popup;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),
@@ -432,7 +458,7 @@ function portfolioTabs() {
 }
 
 module.exports = portfolioTabs;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function replaceImg() {
   let sizeWrapper = document.querySelector('.sizes-wrapper'),
       sizesBlock = document.querySelectorAll('.sizes-block'),

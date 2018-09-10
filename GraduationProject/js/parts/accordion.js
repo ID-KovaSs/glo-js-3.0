@@ -28,8 +28,6 @@ function accordion() {
 
   accordion.addEventListener('click', function(e) {
     let target = e.target;
-    console.log(target);
-    console.log(target.parentElement);
     removeActive();
     if(target.parentElement.classList.contains('accordion-heading')) {
       target.parentElement.classList.add('active');

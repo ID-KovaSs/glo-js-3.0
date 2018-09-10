@@ -924,14 +924,15 @@ h4 {
   border-bottom: 2px dotted #333;
 }
 .often-questions .accordion-block {
+  z-index: 2;
   margin-top: 3rem;
   background-color: #f7e7e6;
   padding: 3rem 4rem;
-  -webkit-animation-name: flip;
-  animation-name: flip;
+  -webkit-animation-name: fade;
+  animation-name: fade;
   -webkit-animation-duration: 1.5s;
   animation-duration: 1.5s;
-  -webkit-animation-name: flip;
+  -webkit-animation-name: fade;
   -webkit-animation-duration: 1.5s;
  }
 .often-questions .accordion-block:before {
