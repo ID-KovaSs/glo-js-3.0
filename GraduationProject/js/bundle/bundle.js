@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	let portfolioTabs = require('../parts/portfolioTabs.js');
 	let calc = require('../parts/calc.js');
 	let replaceImg = require('../parts/replaceImg.js');
+	let accordion = require('../parts/accordion.js');
 	
 	headerSlider();
 	popup();
@@ -15,9 +16,52 @@ window.addEventListener('DOMContentLoaded', function() {
 	portfolioTabs();
 	calc();
 	replaceImg();
+	accordion();
 	
 });
-},{"../parts/addBlocks.js":2,"../parts/calc.js":3,"../parts/headerSlider.js":4,"../parts/popup.js":5,"../parts/portfolioTabs.js":6,"../parts/replaceImg.js":7}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/calc.js":4,"../parts/headerSlider.js":5,"../parts/popup.js":6,"../parts/portfolioTabs.js":7,"../parts/replaceImg.js":8}],2:[function(require,module,exports){
+function accordion() {
+    let accordion = document.querySelector('#accordion'),
+      accorHead = document.querySelectorAll('.accordion-heading'),
+      accorBlock = document.querySelectorAll('.accordion-block');
+  
+  getActive();
+  accorBlock[0].style.display = "block";
+  accorHead[0].style.color = "#C51BBB";
+  
+  function removeActive() {
+    for (let i = 0; i < accorBlock.length; i++) {
+      accorHead[i].classList.remove('active');
+    }
+  }
+
+  function getActive(e) {
+    for (let i = 0; i < accorBlock.length; i++) {
+      if(accorHead[i].classList.contains('active')) {
+        accorHead[i].style.color = "#C51BBB";
+        e.parentElement.nextElementSibling.style.display = "block";
+      } else {
+        accorBlock[i].style.display = "none";
+        accorHead[i].style.color = "";
+        accorHead[i].classList.remove('active');
+      }
+    }
+  }
+
+  accordion.addEventListener('click', function(e) {
+    let target = e.target;
+    console.log(target);
+    console.log(target.parentElement);
+    removeActive();
+    if(target.parentElement.classList.contains('accordion-heading')) {
+      target.parentElement.classList.add('active');
+      getActive(target);
+    }
+  });
+}
+
+module.exports = accordion;
+},{}],3:[function(require,module,exports){
 function addBlocks() {
   let blocksBtn = document.getElementById('addBlocksBtn'),
       hiddenBlocks = document.querySelectorAll('.hidden-lg');
@@ -31,7 +75,7 @@ function addBlocks() {
 }
 
 module.exports = addBlocks;
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 function calc() {
   let size = document.querySelector('#size'),
       material = document.querySelector('#material'),
@@ -110,7 +154,7 @@ function calc() {
 }
 
 module.exports = calc;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -148,7 +192,7 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
@@ -160,9 +204,40 @@ function popup() {
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false,
+      scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      ),
       timeTrigger = 60000;
 
+
+
   timePopup(timeTrigger);
+  
+  // Функция всплытия модального окна с подарком
+  function scrollBottom() {
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    // console.log(scrolled);
+    if(scrolled == scrollHeight) {
+      let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
+      if( mobileAgent ) {
+        buttonConsult = true;
+        animationAppIn();
+        } else if(IEAgent) {
+          buttonConsult = true;
+          animationAppIn();
+          } else {
+            buttonConsult = true;
+            animationPcIn(this);
+          }
+    }
+  }
+  // Событие срабатывающее на scroll до конца страницы
+  window.addEventListener('scroll', () => {
+    scrollBottom();
+  });
 
    // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
   body.addEventListener('click', function(e) {
@@ -312,7 +387,7 @@ function popup() {
 
 
 module.exports = popup;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),
@@ -357,7 +432,7 @@ function portfolioTabs() {
 }
 
 module.exports = portfolioTabs;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function replaceImg() {
   let sizeWrapper = document.querySelector('.sizes-wrapper'),
       sizesBlock = document.querySelectorAll('.sizes-block'),

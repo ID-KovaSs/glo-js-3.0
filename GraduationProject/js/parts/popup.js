@@ -9,9 +9,40 @@ function popup() {
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false,
+      scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      ),
       timeTrigger = 60000;
 
+
+
   timePopup(timeTrigger);
+  
+  // Функция всплытия модального окна с подарком
+  function scrollBottom() {
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    // console.log(scrolled);
+    if(scrolled == scrollHeight) {
+      let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
+      if( mobileAgent ) {
+        buttonConsult = true;
+        animationAppIn();
+        } else if(IEAgent) {
+          buttonConsult = true;
+          animationAppIn();
+          } else {
+            buttonConsult = true;
+            animationPcIn(this);
+          }
+    }
+  }
+  // Событие срабатывающее на scroll до конца страницы
+  window.addEventListener('scroll', () => {
+    scrollBottom();
+  });
 
    // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
   body.addEventListener('click', function(e) {
