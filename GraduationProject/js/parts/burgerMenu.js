@@ -5,15 +5,14 @@ function accordion() {
 
   function hideMenu(e) {
     burgerMenu.style.display = "none";
-    if(!e.classList.contains('burger-menu') || e.parentElement.classList.contains('burger')) {
+    if(!e.classList.contains('burger-menu') || e.parentElement.classList.contains('burger') || e.classList.contains('burger')) {
       burgerMenu.style.display = "none";
     }
   }
 
   body.addEventListener('click', (e) => {
     let target = e.target;
-    console.log(target);
-    if(window.innerWidth < 768 && burgerMenu.style.display == "none" || target.parentElement.classList.contains('burger')) {
+    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || target.classList.contains('burger') && burgerMenu.style.display == "none") {
       burgerMenu.style.display = "block";
     } else {
       hideMenu(target);

@@ -83,15 +83,14 @@ function accordion() {
 
   function hideMenu(e) {
     burgerMenu.style.display = "none";
-    if(!e.classList.contains('burger-menu') || e.parentElement.classList.contains('burger')) {
+    if(!e.classList.contains('burger-menu') || e.parentElement.classList.contains('burger') || e.classList.contains('burger')) {
       burgerMenu.style.display = "none";
     }
   }
 
   body.addEventListener('click', (e) => {
     let target = e.target;
-    console.log(target);
-    if(window.innerWidth < 768 && burgerMenu.style.display == "none" || target.parentElement.classList.contains('burger')) {
+    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || target.classList.contains('burger') && burgerMenu.style.display == "none") {
       burgerMenu.style.display = "block";
     } else {
       hideMenu(target);
@@ -230,22 +229,24 @@ function popup() {
       buttonDesign = false,
       buttonGift = false,
       buttonConsult = false,
-      scrollHeight = Math.max(
-        document.body.scrollHeight, document.documentElement.scrollHeight,
-        document.body.offsetHeight, document.documentElement.offsetHeight,
-        document.body.clientHeight, document.documentElement.clientHeight
-      ),
+      scroledTrigger = false,
+      scrollHeight =  body.scrollHeight;
+/*       scrollHeight = Math.max(
+        body.scrollHeight, document.documentElement.scrollHeight,
+        body.offsetHeight, document.documentElement.offsetHeight,
+        body.clientHeight, document.documentElement.clientHeight
+      ), */
       timeTrigger = 60000;
 
-
+      console.log(scrollHeight);
 
   timePopup(timeTrigger);
   
   // Функция всплытия модального окна с подарком
   function scrollBottom() {
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    // console.log(scrolled);
-    if(scrolled == scrollHeight) {
+    console.log(scrolled);
+    if(scrolled == scrollHeight && !scroledTrigger) {
       let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
       if( mobileAgent ) {
@@ -258,10 +259,12 @@ function popup() {
             buttonConsult = true;
             animationPcIn(this);
           }
+    scroledTrigger = true;  
     }
   }
   // Событие срабатывающее на scroll до конца страницы
   window.addEventListener('scroll', () => {
+    
     scrollBottom();
   });
 
