@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	let replaceImg = require('../parts/replaceImg.js');
 	let accordion = require('../parts/accordion.js');
 	let burgerMenu = require('../parts/burgerMenu.js');
+	let ajaxForm = require('../parts/ajaxForm.js');
+	let slider = require('../parts/slider.js');
 	
 	headerSlider();
 	popup();
@@ -19,9 +21,11 @@ window.addEventListener('DOMContentLoaded', function() {
 	replaceImg();
 	accordion();
 	burgerMenu();
+	ajaxForm();
+	slider();
 	
 });
-},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/burgerMenu.js":4,"../parts/calc.js":5,"../parts/headerSlider.js":6,"../parts/popup.js":7,"../parts/portfolioTabs.js":8,"../parts/replaceImg.js":9}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/ajaxForm.js":4,"../parts/burgerMenu.js":5,"../parts/calc.js":6,"../parts/headerSlider.js":7,"../parts/popup.js":8,"../parts/portfolioTabs.js":9,"../parts/replaceImg.js":10,"../parts/slider.js":11}],2:[function(require,module,exports){
 function accordion() {
     let accordion = document.querySelector('#accordion'),
       accorHead = document.querySelectorAll('.accordion-heading'),
@@ -76,6 +80,107 @@ function addBlocks() {
 
 module.exports = addBlocks;
 },{}],4:[function(require,module,exports){
+function ajaxForm() {
+  // Forms
+  let message = {},
+      form = document.querySelectorAll('.form'),
+      body = document.querySelector('body'),
+      statusMessage = document.createElement('img');
+
+  console.log(form);
+
+  message.loading = "Загрузка...";
+  message.success = "Спасибо! Скоро мы с вами свяжемся";
+  message.failure = "Что-то пошло не так...";
+
+  function ajaxSend() {
+    for (let i = 0; i < form.length; i++) {
+      let input = form[i].getElementsByTagName('input');
+      form[i].appendChild(statusMessage);
+      
+      // AJAX
+      let request = new XMLHttpRequest();
+      request.open("POST", 'server.php');
+      // Записываем кодировку
+      request.setRequestHeader("Content-Type", "aplication/x-www-form-urlencoded");
+  
+      let formData = new FormData(form[i]);
+  
+      request.send(formData);
+  
+      request.onreadystatechange = function() {
+        if(request.readyState < 4) {
+          statusMessage.src = "img/ajax/send.gif";
+        } else if(request.readyState === 4) {
+          if(request.status == 200 && request.status < 300) {
+            statusMessage.src = "img/ajax/success-mail.gif";
+            // Можно добавить контент на страницу
+          } else {
+            // Выводим сообщение об ошибке
+            console.log(request.status);
+            statusMessage.src = "img/ajax/error.gif";
+            }
+        }
+      };
+    
+      for (let i = 0; i < input.length; i++) {
+        // Очищаем поля ввода
+        input[i].value = '';
+      }
+    }
+
+  }
+  
+  body.addEventListener("click", function(e) {
+    let target = e.target;
+    e.preventDefault();
+    if(target.classList.contains('send')){
+      ajaxSend();
+    }
+  });
+
+  /* statusMessage.classList.add('status');
+  for (let i = 0; i < form.length; i++) {
+    let input = form[i].getElementsByTagName('input');
+    form[i].addEventListener('submit', function(e) {
+      e.preventDefault();
+      form[i].appendChild(statusMessage);
+      
+      // AJAX
+      let request = new XMLHttpRequest();
+      request.open("POST", 'server.php');
+      // Записываем кодировку
+      request.setRequestHeader("Content-Type", "aplication/x-www-form-urlencoded");
+
+      let formData = new FormData(form[i]);
+  
+      request.send(formData);
+
+      request.onreadystatechange = function() {
+        if(request.readyState < 4) {
+          statusMessage.src = "img/send.gif";
+        } else if(request.readyState === 4) {
+          if(request.status == 200 && request.status < 300) {
+            statusMessage.src = "img/success-mail.gif";
+            // Можно добавить контент на страницу
+          } else {
+            // Выводим сообщение об ошибке
+            console.log(request.status);
+            statusMessage.src = "img/error.gif";
+            }
+        }
+      };
+    
+      for (let i = 0; i < input.length; i++) {
+        // Очищаем поля ввода
+        input[i].value = '';
+      }
+    });
+  } */
+}
+
+module.exports = ajaxForm;
+},{}],5:[function(require,module,exports){
 function accordion() {
   let burgerBtn = document.querySelector('.burger'),
       body = document.querySelector('body'),
@@ -90,7 +195,7 @@ function accordion() {
 
   body.addEventListener('click', (e) => {
     let target = e.target;
-    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || target.classList.contains('burger') && burgerMenu.style.display == "none") {
+    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || window.innerWidth < 768 && target.classList.contains('burger') && burgerMenu.style.display == "none") {
       burgerMenu.style.display = "block";
     } else {
       hideMenu(target);
@@ -100,7 +205,7 @@ function accordion() {
 }
 
 module.exports = accordion;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function calc() {
   let size = document.querySelector('#size'),
       material = document.querySelector('#material'),
@@ -179,7 +284,7 @@ function calc() {
 }
 
 module.exports = calc;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -217,7 +322,7 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
@@ -238,14 +343,14 @@ function popup() {
       ), */
       timeTrigger = 60000;
 
-      console.log(scrollHeight);
+      // console.log(scrollHeight);
 
   timePopup(timeTrigger);
   
   // Функция всплытия модального окна с подарком
   function scrollBottom() {
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(scrolled);
+    // console.log(scrolled);
     if(scrolled == scrollHeight && !scroledTrigger) {
       let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
@@ -416,7 +521,7 @@ function popup() {
 
 
 module.exports = popup;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),
@@ -461,7 +566,7 @@ function portfolioTabs() {
 }
 
 module.exports = portfolioTabs;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 function replaceImg() {
   let sizeWrapper = document.querySelector('.sizes-wrapper'),
       sizesBlock = document.querySelectorAll('.sizes-block'),
@@ -531,4 +636,47 @@ function replaceImg() {
 }
 
 module.exports = replaceImg;
+},{}],11:[function(require,module,exports){
+function slider() {
+  // Slider
+	let slideIndex = 1,
+  slides = document.querySelectorAll('.feedback-slider-item'),
+  prev = document.querySelector('.main-prev-btn'),
+  next = document.querySelector('.main-next-btn');
+
+  showSlides(slideIndex);
+
+  function showSlides(n) {
+  if(n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = 'none';
+  }
+ 
+  slides[slideIndex - 1].style.display = 'block';
+  }
+
+  function plusSlides(n) {
+  showSlides(slideIndex += n);
+  }
+
+  function currentSlides(n) {
+  showSlides(slideIndex = n);
+  }
+
+  prev.addEventListener('click', function() {
+  plusSlides(-1);
+  });
+
+  next.addEventListener('click', function() {
+  plusSlides(1);
+  });
+
+}
+
+module.exports = slider;
 },{}]},{},[1]);

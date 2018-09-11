@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	let replaceImg = require('../parts/replaceImg.js');
 	let accordion = require('../parts/accordion.js');
 	let burgerMenu = require('../parts/burgerMenu.js');
+	let ajaxForm = require('../parts/ajaxForm.js');
+	let slider = require('../parts/slider.js');
 	
 	headerSlider();
 	popup();
@@ -18,5 +20,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	replaceImg();
 	accordion();
 	burgerMenu();
+	ajaxForm();
+	slider();
 	
 });

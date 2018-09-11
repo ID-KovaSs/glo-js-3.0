@@ -12,7 +12,7 @@ function accordion() {
 
   body.addEventListener('click', (e) => {
     let target = e.target;
-    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || target.classList.contains('burger') && burgerMenu.style.display == "none") {
+    if(window.innerWidth < 768 && burgerMenu.style.display == "none" && target.parentElement.classList.contains('burger') || window.innerWidth < 768 && target.classList.contains('burger') && burgerMenu.style.display == "none") {
       burgerMenu.style.display = "block";
     } else {
       hideMenu(target);

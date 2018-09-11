@@ -18,14 +18,14 @@ function popup() {
       ), */
       timeTrigger = 60000;
 
-      console.log(scrollHeight);
+      // console.log(scrollHeight);
 
   timePopup(timeTrigger);
   
   // Функция всплытия модального окна с подарком
   function scrollBottom() {
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(scrolled);
+    // console.log(scrolled);
     if(scrolled == scrollHeight && !scroledTrigger) {
       let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
