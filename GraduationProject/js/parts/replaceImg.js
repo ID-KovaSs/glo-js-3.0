@@ -34,7 +34,7 @@ function replaceImg() {
   }
 
   function replaseImg(e,src,rsrc,num) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {
@@ -44,7 +44,7 @@ function replaceImg() {
   }
 
   function hideImg(e,src,rsrc,num) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {

@@ -384,27 +384,24 @@ function popup() {
       ),
       timeTrigger = 60000;
 
-      console.log(scrollHeight);
-
   timePopup(timeTrigger);
   
   // Функция всплытия модального окна с подарком
   function scrollBottom() {
-    let scrolled = window.pageYOffset || document.documentElement.scrollTop,
-        scrollFull = scrolled + document.documentElement.clientHeight;
-    console.log(scrollFull);
+    let scrolled = document.documentElement.scrollTop,
+        scrollFull = 1483 + scrolled + document.documentElement.clientHeight;
 
     if(scrollFull >= scrollHeight && !scroledTrigger) {
       let mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
         IEAgent = /MSIE 10/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent) || /MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent);
       if( mobileAgent ) {
-        buttonConsult = true;
+        buttonGift = true;
         animationAppIn();
         } else if(IEAgent) {
-          buttonConsult = true;
+          buttonGift = true;
           animationAppIn();
           } else {
-            buttonConsult = true;
+            buttonGift = true;
             animationPcIn(this);
           }
     scroledTrigger = true;  
@@ -417,6 +414,7 @@ function popup() {
 
    // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
   body.addEventListener('click', function(e) {
+    scroledTrigger = true;
     clearTimeout(timePopup);
     let target = e.target,
         mobileAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
@@ -645,7 +643,7 @@ function replaceImg() {
   }
 
   function replaseImg(e,src,rsrc,num) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {
@@ -655,7 +653,7 @@ function replaceImg() {
   }
 
   function hideImg(e,src,rsrc,num) {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {
