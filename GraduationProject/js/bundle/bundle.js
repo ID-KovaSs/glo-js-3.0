@@ -270,7 +270,7 @@ function checkRus() {
   
   // Проверка на ввод русских символов в поле имени и комментария 
   function checkRus(e) {
-    (e.value.match(/[А-я]/ig))? console.log(e.value) : e.value = '';
+    (e.value.match(/[А-я]/ig))? console.log() : e.value = '';
   }
   
   body.addEventListener('input', function(e) {
@@ -711,6 +711,11 @@ function slider() {
   next.addEventListener('click', function() {
     plusSlides(1);
   });
+
+  setTimeout(function run() {
+    plusSlides(1);
+    setTimeout(run, 5000);
+  }, 3500);
 
 }
 

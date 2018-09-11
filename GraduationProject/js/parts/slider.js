@@ -33,6 +33,11 @@ function slider() {
     plusSlides(1);
   });
 
+  setTimeout(function run() {
+    plusSlides(1);
+    setTimeout(run, 5000);
+  }, 3500);
+
 }
 
 module.exports = slider;
