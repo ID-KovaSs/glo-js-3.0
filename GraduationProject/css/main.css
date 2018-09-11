@@ -861,6 +861,12 @@ h4 {
 }
 .feedback-slider-item {
   padding-bottom: 5rem;
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-name: slideInRight;
+  -webkit-animation-duration: 1.5s;
 }
 .feedback-block {
   position: relative;
@@ -1421,6 +1427,7 @@ h4 {
   }
   .feedback-slider-item {
     padding-bottom: 7rem;
+
   }
   .feedback-heading {
     margin: 0;
@@ -1856,3 +1863,14 @@ h4 {
   font-family: 'Circe Extra Bold', sans-serif !important;
   font-size: 1.9rem !important;
 }
+
+/* Анимация для нижнего слайдера */
+@keyframes slideInRight {
+  from{transform:translate3d(100%,0,0);visibility:visible}
+  to{transform:translate3d(0,0,0)}
+  }
+
+@keyframes slideInLeft {
+  from{transform:translate3d(-100%,0,0);visibility:visible}
+  to{transform:translate3d(0,0,0)}
+  }

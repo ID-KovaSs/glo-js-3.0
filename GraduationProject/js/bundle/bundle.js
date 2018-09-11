@@ -709,16 +709,25 @@ function slider() {
 
   prev.addEventListener('click', function() {
     plusSlides(-1);
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.animationName = "slideInLeft";
+    }
   });
 
   next.addEventListener('click', function() {
     plusSlides(1);
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.animationName = "slideInRight";
+    }
   });
 
   setTimeout(function run() {
     plusSlides(1);
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.animationName = "slideInRight";
+    }
     setTimeout(run, 5000);
-  }, 3500);
+  }, 5000);
 
 }
 
