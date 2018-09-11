@@ -3,7 +3,10 @@ function checkRus() {
   
   // Проверка на ввод русских символов в поле имени и комментария 
   function checkRus(e) {
-    (e.value.match(/[А-я]/ig))? console.log() : e.value = '';
+    if(e.value.match(/[A-z0-9]/ig)){
+      e.value = '';
+    } 
+    // (e.value.match(/[0-9]/ig))? console.log() : e.value = '';
   }
   
   body.addEventListener('input', function(e) {
