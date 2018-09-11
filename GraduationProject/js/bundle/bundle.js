@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	let burgerMenu = require('../parts/burgerMenu.js');
 	let ajaxForm = require('../parts/ajaxForm.js');
 	let slider = require('../parts/slider.js');
+	let checkRus = require('../parts/checkRus.js');
+	let phoneMask = require('../parts/phoneMask.js');
 	
 	headerSlider();
 	popup();
@@ -23,9 +25,11 @@ window.addEventListener('DOMContentLoaded', function() {
 	burgerMenu();
 	ajaxForm();
 	slider();
+	checkRus();
+	phoneMask();
 	
 });
-},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/ajaxForm.js":4,"../parts/burgerMenu.js":5,"../parts/calc.js":6,"../parts/headerSlider.js":7,"../parts/popup.js":8,"../parts/portfolioTabs.js":9,"../parts/replaceImg.js":10,"../parts/slider.js":11}],2:[function(require,module,exports){
+},{"../parts/accordion.js":2,"../parts/addBlocks.js":3,"../parts/ajaxForm.js":4,"../parts/burgerMenu.js":5,"../parts/calc.js":6,"../parts/checkRus.js":7,"../parts/headerSlider.js":8,"../parts/phoneMask.js":9,"../parts/popup.js":10,"../parts/portfolioTabs.js":11,"../parts/replaceImg.js":12,"../parts/slider.js":13}],2:[function(require,module,exports){
 function accordion() {
     let accordion = document.querySelector('#accordion'),
       accorHead = document.querySelectorAll('.accordion-heading'),
@@ -87,86 +91,57 @@ function ajaxForm() {
       body = document.querySelector('body'),
       statusMessage = document.createElement('img');
 
-  console.log(form);
-
   message.loading = "Загрузка...";
   message.success = "Спасибо! Скоро мы с вами свяжемся";
   message.failure = "Что-то пошло не так...";
 
-  function ajaxSend() {
-    for (let i = 0; i < form.length; i++) {
-      let input = form[i].getElementsByTagName('input');
-      form[i].appendChild(statusMessage);
-      
-      // AJAX
-      let request = new XMLHttpRequest();
-      request.open("POST", 'server.php');
-      // Записываем кодировку
-      request.setRequestHeader("Content-Type", "aplication/x-www-form-urlencoded");
-  
-      let formData = new FormData(form[i]);
-  
-      request.send(formData);
-  
-      request.onreadystatechange = function() {
-        if(request.readyState < 4) {
-          statusMessage.src = "img/ajax/send.gif";
-        } else if(request.readyState === 4) {
-          if(request.status == 200 && request.status < 300) {
-            statusMessage.src = "img/ajax/success-mail.gif";
-            // Можно добавить контент на страницу
-          } else {
-            // Выводим сообщение об ошибке
-            console.log(request.status);
-            statusMessage.src = "img/ajax/error.gif";
-            }
-        }
-      };
-    
-      for (let i = 0; i < input.length; i++) {
-        // Очищаем поля ввода
-        input[i].value = '';
+  function hideElements(form) {
+    for (let i = 0; i < form.children.length; i++) {
+      if(form.children[i].closest('h4')){
+        form.children[i].style.display = "block";
+      } else if(form.children[i].closest('img')) {
+        form.children[i].style.display = "inline-block";
+        form.children[i].style.width = "150px";
+      } else {
+        form.children[i].style.display = "none";
       }
     }
-
   }
   
-  body.addEventListener("click", function(e) {
-    let target = e.target;
-    e.preventDefault();
-    if(target.classList.contains('send')){
-      ajaxSend();
-    }
-  });
-
-  /* statusMessage.classList.add('status');
-  for (let i = 0; i < form.length; i++) {
-    let input = form[i].getElementsByTagName('input');
-    form[i].addEventListener('submit', function(e) {
-      e.preventDefault();
-      form[i].appendChild(statusMessage);
+  function loading(obj) {
+    hideElements(obj);
+    statusMessage.src = "img/ajax/send.gif";
+  }
+  function success(obj) {
+    hideElements(obj);
+    statusMessage.src = "img/ajax/success-mail.gif";
+  }
+  function failure(obj) {
+    hideElements(obj);
+    statusMessage.src = "img/ajax/error.gif";
+  }
+  
+  function ajaxSend(e) {
+      let input = e.getElementsByTagName('input');
+      e.appendChild(statusMessage);
       
       // AJAX
       let request = new XMLHttpRequest();
       request.open("POST", 'server.php');
       // Записываем кодировку
       request.setRequestHeader("Content-Type", "aplication/x-www-form-urlencoded");
-
-      let formData = new FormData(form[i]);
   
+      let formData = new FormData(e);
       request.send(formData);
-
+  
       request.onreadystatechange = function() {
         if(request.readyState < 4) {
-          statusMessage.src = "img/send.gif";
+          loading(e);
         } else if(request.readyState === 4) {
           if(request.status == 200 && request.status < 300) {
-            statusMessage.src = "img/success-mail.gif";
-            // Можно добавить контент на страницу
+            success(e);
           } else {
-            // Выводим сообщение об ошибке
-            console.log(request.status);
-            statusMessage.src = "img/error.gif";
+            failure(e);
             }
         }
       };
@@ -175,8 +150,13 @@ function ajaxForm() {
         // Очищаем поля ввода
         input[i].value = '';
       }
-    });
-  } */
+  }
+  
+  body.addEventListener('submit', function(e) {
+    let target = e.target;
+    e.preventDefault();
+      ajaxSend(target);
+  });
 }
 
 module.exports = ajaxForm;
@@ -285,6 +265,25 @@ function calc() {
 
 module.exports = calc;
 },{}],7:[function(require,module,exports){
+function checkRus() {
+  let body = document.querySelector('body');
+  
+  // Проверка на ввод русских символов в поле имени и комментария 
+  function checkRus(e) {
+    (e.value.match(/[А-я]/ig))? console.log(e) : e.value = '';
+  }
+  
+  body.addEventListener('input', function(e) {
+    let target = e.target;
+    if(target.name == "name" || target.name == "message") {
+      console.log(target);
+      checkRus(target);
+    }
+  });
+}
+
+module.exports = checkRus;
+},{}],8:[function(require,module,exports){
 function headerSlider() {
   let slideIndex = 0,
       slides = document.querySelectorAll('.main-slider-item');
@@ -322,7 +321,50 @@ function headerSlider() {
 }
 
 module.exports = headerSlider;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+function phoneMask() {
+	//PhoneMask
+	let keyCode,
+			body = document.querySelector('body');
+
+	function mask(event) {
+		event.keyCode && (keyCode = event.keyCode);
+		let pos = this.selectionStart;
+		if (pos < 3) event.preventDefault();
+		let matrix = "+7 (___) ___-__-__",
+	  		i = 0,
+	  		def = matrix.replace(/\D/g, ""),
+	  		val = this.value.replace(/\D/g, ""),
+		new_value = matrix.replace(/[_\d]/g, function(a) {
+		return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+	});
+	i = new_value.indexOf("_");
+	if (i != -1) {
+		i < 5 && (i = 3);
+		new_value = new_value.slice(0, i);
+	}
+	let reg = matrix.substr(0, this.value.length).replace(/_+/g, function(a) {
+			return "\\d{1," + a.length + "}";
+	  }).replace(/[+()]/g, "\\$&");
+	reg = new RegExp("^" + reg + "$");
+	if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+	if (event.type == "blur" && this.value.length < 5)  this.value = "";
+	}
+	
+	
+	body.addEventListener('input', (e) => {
+		let target = e.target;
+		if(target.name == "phone") {
+			target.addEventListener("input", mask, false);
+			target.addEventListener("focus", mask, false);
+			target.addEventListener("blur", mask, false);
+			target.addEventListener("keydown", mask, false);
+		}
+	});
+}
+
+module.exports = phoneMask;
+},{}],10:[function(require,module,exports){
 function popup() {
 
   let popupDesign = document.querySelector('.popup-design'),
@@ -521,7 +563,7 @@ function popup() {
 
 
 module.exports = popup;
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 function portfolioTabs() {
   let portfBlocks = document.querySelectorAll('.portfolio-block'),
       portfMenu = document.querySelector('.portfolio-menu'),
@@ -566,7 +608,7 @@ function portfolioTabs() {
 }
 
 module.exports = portfolioTabs;
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 function replaceImg() {
   let sizeWrapper = document.querySelector('.sizes-wrapper'),
       sizesBlock = document.querySelectorAll('.sizes-block'),
@@ -636,7 +678,7 @@ function replaceImg() {
 }
 
 module.exports = replaceImg;
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 function slider() {
   // Slider
 	let slideIndex = 1,
@@ -647,33 +689,29 @@ function slider() {
   showSlides(slideIndex);
 
   function showSlides(n) {
-  if(n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = 'none';
-  }
- 
-  slides[slideIndex - 1].style.display = 'block';
+    if(n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+    }
+  
+    slides[slideIndex - 1].style.display = 'block';
   }
 
   function plusSlides(n) {
-  showSlides(slideIndex += n);
-  }
-
-  function currentSlides(n) {
-  showSlides(slideIndex = n);
+    showSlides(slideIndex += n);
   }
 
   prev.addEventListener('click', function() {
-  plusSlides(-1);
+    plusSlides(-1);
   });
 
   next.addEventListener('click', function() {
-  plusSlides(1);
+    plusSlides(1);
   });
 
 }

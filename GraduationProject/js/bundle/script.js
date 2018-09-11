@@ -11,6 +11,8 @@ window.addEventListener('DOMContentLoaded', function() {
 	let burgerMenu = require('../parts/burgerMenu.js');
 	let ajaxForm = require('../parts/ajaxForm.js');
 	let slider = require('../parts/slider.js');
+	let checkRus = require('../parts/checkRus.js');
+	let phoneMask = require('../parts/phoneMask.js');
 	
 	headerSlider();
 	popup();
@@ -22,5 +24,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	burgerMenu();
 	ajaxForm();
 	slider();
+	checkRus();
+	phoneMask();
 	
 });
