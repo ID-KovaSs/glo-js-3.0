@@ -541,7 +541,9 @@ function popup() {
       popupConsult.style.display = "none";
       popupGift.style.display = "none";
       document.body.style.overflow = "";
-      buttonGiftRemove.style.display = "block";	
+        if(buttonGift = false){
+          buttonGiftRemove.style.display = "block";
+        }
     }
     if(target.classList.contains("popup-design") || target.classList.contains("popup-consultation")){
       buttonDesign = false;
@@ -549,13 +551,15 @@ function popup() {
       popupDesign.style.display = "none";
       popupConsult.style.display = "none";
       document.body.style.overflow = "";
-      buttonGiftRemove.style.display = "block";	
+        if(buttonGift = false){
+          buttonGiftRemove.style.display = "block";
+        }
     }
     if(target.classList.contains("popup-gift")) {
       buttonGift = false;
       popupGift.style.display = "none";
       document.body.style.overflow = "";
-      buttonGiftRemove.style.display = "none";		
+      buttonGiftRemove.style.display = "none";
     }
     if(target.classList.contains("copy")) {
       let promoCopied = target.textContent;
