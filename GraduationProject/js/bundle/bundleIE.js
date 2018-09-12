@@ -503,18 +503,21 @@
         // Отображение дизайн-формы
         if (buttonDesign) {
           popupDesign.classList.add('fadeIn');
+          buttonGiftRemove.style.display = "none";
           popupDesign.style.display = "block";
           document.body.style.overflow = "hidden";
         }
         // Отображение формы-консультации
         if (buttonConsult) {
           popupConsult.classList.add('fadeIn');
+          buttonGiftRemove.style.display = "none";
           popupConsult.style.display = "block";
           document.body.style.overflow = "hidden";
         }
         // Отображение формы с подарком
         if (buttonGift) {
           popupGift.classList.add('fadeIn');
+          buttonGiftRemove.style.display = "none";
           popupGift.style.display = "block";
           document.body.style.overflow = "hidden";
         }
