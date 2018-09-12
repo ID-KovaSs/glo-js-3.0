@@ -16,6 +16,10 @@ function ajaxForm() {
       } else if(form.children[i].tagName =='IMG') {
         form.children[i].style.display = "inline-block";
         form.children[i].style.width = "150px";
+        form.style.display = "flex";
+        form.style.justifyContent = "center";
+        form.style.alignItems = "center";
+        form.style.flexFlow = " column wrap";;
       } else {
         form.children[i].style.display = "none";
       }

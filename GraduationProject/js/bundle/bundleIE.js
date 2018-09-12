@@ -117,6 +117,10 @@
           } else if (form.children[i].tagName == 'IMG') {
             form.children[i].style.display = "inline-block";
             form.children[i].style.width = "150px";
+            form.style.display = "flex";
+            form.style.justifyContent = "center";
+            form.style.alignItems = "center";
+            form.style.flexFlow = " column wrap";;
           } else {
             form.children[i].style.display = "none";
           }
@@ -500,16 +504,19 @@
         console.log("мобильное сособытие");
         // Отображение дизайн-формы
         if (buttonDesign) {
+          popupDesign.classList.add('fadeIn');
           popupDesign.style.display = "block";
           document.body.style.overflow = "hidden";
         }
         // Отображение формы-консультации
         if (buttonDesign) {
+          popupConsult.classList.add('fadeIn');
           popupConsult.style.display = "block";
           document.body.style.overflow = "hidden";
         }
         // Отображение формы с подарком
         if (buttonDesign) {
+          popupGift.classList.add('fadeIn');
           popupGift.style.display = "block";
           document.body.style.overflow = "hidden";
         }
@@ -577,7 +584,7 @@
       portfMenuItems[0].classList.add('active');
 
       function getActive(e) {
-        if (e.tagName == "li") {
+        if (e.tagName == "LI") {
           for (var i = 0; i < portfMenuItems.length; i++) {
             portfMenuItems[i].classList.remove('active');
           }
@@ -605,6 +612,7 @@
 
       portfMenu.addEventListener('click', function (e) {
         var target = e.target;
+        console.log(target);
         getActive(target);
         showBlock(target);
       });

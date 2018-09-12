@@ -7,7 +7,7 @@ function portfolioTabs() {
   portfMenuItems[0].classList.add('active');
 
   function getActive(e) {
-    if(e.tagName == "li") {
+    if(e.tagName == "LI") {
       for (let i = 0; i < portfMenuItems.length; i++) {
         portfMenuItems[i].classList.remove('active');     
       }
@@ -35,6 +35,7 @@ function portfolioTabs() {
  
   portfMenu.addEventListener('click', (e) => {
     let target = e.target;
+    console.log(target);
     getActive(target);
     showBlock(target);
 
