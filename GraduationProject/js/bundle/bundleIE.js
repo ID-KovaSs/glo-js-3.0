@@ -479,7 +479,6 @@
 
       // Анимация для десктопных браузеров
       function animationPcIn(param) {
-        console.log("десктопное сособытие");
         // Отображение дизайн-формы
         if (buttonDesign) {
           buttonGiftRemove.style.display = "none";
@@ -501,7 +500,6 @@
       }
       // Для мобильных приложений
       function animationAppIn() {
-        console.log("мобильное сособытие");
         // Отображение дизайн-формы
         if (buttonDesign) {
           popupDesign.classList.add('fadeIn');
@@ -509,13 +507,13 @@
           document.body.style.overflow = "hidden";
         }
         // Отображение формы-консультации
-        if (buttonDesign) {
+        if (buttonConsult) {
           popupConsult.classList.add('fadeIn');
           popupConsult.style.display = "block";
           document.body.style.overflow = "hidden";
         }
         // Отображение формы с подарком
-        if (buttonDesign) {
+        if (buttonGift) {
           popupGift.classList.add('fadeIn');
           popupGift.style.display = "block";
           document.body.style.overflow = "hidden";
@@ -563,6 +561,7 @@
           buttonGift = false;
           popupGift.style.display = "none";
           document.body.style.overflow = "";
+          buttonGiftRemove.style.display = "none";
         }
         if (target.classList.contains("copy")) {
           var promoCopied = target.textContent;
@@ -612,7 +611,6 @@
 
       portfMenu.addEventListener('click', function (e) {
         var target = e.target;
-        console.log(target);
         getActive(target);
         showBlock(target);
       });

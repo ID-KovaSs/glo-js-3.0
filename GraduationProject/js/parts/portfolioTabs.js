@@ -35,7 +35,6 @@ function portfolioTabs() {
  
   portfMenu.addEventListener('click', (e) => {
     let target = e.target;
-    console.log(target);
     getActive(target);
     showBlock(target);
 
