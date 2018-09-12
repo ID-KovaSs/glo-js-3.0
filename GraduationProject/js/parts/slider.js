@@ -25,14 +25,14 @@ function slider() {
     showSlides(slideIndex += n);
   }
 
-  prev.addEventListener('click', function() {
+  prev.addEventListener('click', () => {
     plusSlides(-1);
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.animationName = "slideInLeft";
     }
   });
 
-  next.addEventListener('click', function() {
+  next.addEventListener('click', () => {
     plusSlides(1);
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.animationName = "slideInRight";

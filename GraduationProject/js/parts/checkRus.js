@@ -9,7 +9,7 @@ function checkRus() {
     // (e.value.match(/[0-9]/ig))? console.log() : e.value = '';
   }
   
-  body.addEventListener('input', function(e) {
+  body.addEventListener('input', (e) => {
     let target = e.target;
     if(target.name == "name" || target.name == "message") {
       checkRus(target);

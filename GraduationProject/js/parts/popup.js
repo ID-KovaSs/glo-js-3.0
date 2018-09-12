@@ -47,7 +47,7 @@ function popup() {
   });
 
    // Делегирование событий кросбраузерного всплытия модального окна на кнопках с классом "button-design"
-  body.addEventListener('click', function(e) {
+  body.addEventListener('click', (e) => {
     scroledTrigger = true;
     clearTimeout(timePopup);
     let target = e.target,
@@ -157,7 +157,7 @@ function popup() {
     }, e)
   }
 
-  body.addEventListener('click', function(e) {
+  body.addEventListener('click', (e) => {
     let target = e.target;
     if(target.classList.contains("popup-close")){
       buttonDesign = false;

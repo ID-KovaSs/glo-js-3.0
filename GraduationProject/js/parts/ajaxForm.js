@@ -11,9 +11,9 @@ function ajaxForm() {
 
   function hideElements(form) {
     for (let i = 0; i < form.children.length; i++) {
-      if(form.children[i].closest('h4')){
+      if(form.children[i].tagName =='H4'){
         form.children[i].style.display = "block";
-      } else if(form.children[i].closest('img')) {
+      } else if(form.children[i].tagName =='IMG') {
         form.children[i].style.display = "inline-block";
         form.children[i].style.width = "150px";
       } else {
@@ -66,7 +66,7 @@ function ajaxForm() {
       }
   }
   
-  body.addEventListener('submit', function(e) {
+  body.addEventListener('submit', (e) => {
     let target = e.target;
     e.preventDefault();
       ajaxSend(target);

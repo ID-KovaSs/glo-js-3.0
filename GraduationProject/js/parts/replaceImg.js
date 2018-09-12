@@ -34,7 +34,7 @@ function replaceImg() {
   }
 
   function replaseImg(e,src,rsrc,num) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {
@@ -44,7 +44,7 @@ function replaceImg() {
   }
 
   function hideImg(e,src,rsrc,num) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       if(sizesBlock[num].children[i].classList.contains(src)) {
         e.setAttribute('src', rsrc);
       } else {
@@ -53,13 +53,13 @@ function replaceImg() {
     }
   }
 
-  sizeWrapper.addEventListener('mouseover', function(e) {
+  sizeWrapper.addEventListener('mouseover', (e) => {
     let target = e.target;
     showImg(target);
     replaseImg(target,eventTarget,secondTarget,sizesBlockNum);
   });
  
-  sizeWrapper.addEventListener('mouseout', function(e) {
+  sizeWrapper.addEventListener('mouseout', (e) => {
     let target = e.target;
     hideImg(target,eventTarget,replaceTarget,sizesBlockNum);
   });

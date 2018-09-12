@@ -66,7 +66,7 @@ function calc() {
     }
   }
 
-  calc.addEventListener('change', function(e) {
+  calc.addEventListener('change', (e) => {
     let target = e.target;
     checkInput(target);
     if(target.classList.contains("promocode")) {

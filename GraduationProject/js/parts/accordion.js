@@ -26,7 +26,7 @@ function accordion() {
     }
   }
 
-  accordion.addEventListener('click', function(e) {
+  accordion.addEventListener('click', (e) => {
     let target = e.target;
     removeActive();
     if(target.parentElement.classList.contains('accordion-heading')) {
