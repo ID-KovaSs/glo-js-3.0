@@ -18,4 +18,4 @@
 
 4) Проверить, чтобы все работало и не было ошибок в консоли
 
-Web: http://isaev.store/www/Glo_JavaScript3.0/lesson-05/
+Web: <a href="http://isaev.store/www/Glo_JavaScript3.0/lesson-05/"> Lesson 5 </a>
