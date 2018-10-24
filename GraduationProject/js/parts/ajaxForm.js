@@ -19,7 +19,7 @@ function ajaxForm() {
         form.style.display = "flex";
         form.style.justifyContent = "center";
         form.style.alignItems = "center";
-        form.style.flexFlow = " column wrap";;
+        form.style.flexFlow = " column wrap";
       } else {
         form.children[i].style.display = "none";
       }
