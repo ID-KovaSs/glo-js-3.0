@@ -12,6 +12,7 @@
 
 5) Проверить, чтобы все работало и не было ошибок в консоли
 
+
 6) Добавить папку с уроком на свой GitHub
 
 Web (isaev.store) : <a href=http://isaev.store/www/Glo_JavaScript3.0/lesson-06/> Lesson 6 - Main task </a>
